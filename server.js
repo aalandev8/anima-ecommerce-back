@@ -1,16 +1,67 @@
-require("dotenv").config();
-const express = require("express");
-const routes = require("./routes");
-const APP_PORT = process.env.APP_PORT || 3000;
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+const sequelize = require('./database.js');
+
+// Las rutas vamos a importarlas asi
+// const userRoutes = require('./routes/usuarios.routes');
+
 const app = express();
 
-// app.use(cors()); // Para habilitar esta línea es necesario instalar la librería `cors`.
-app.use(express.static("public"));
+app.use(cors());
 app.use(express.json());
 
-routes(app);
+// app.use('/usuarios', userRoutes); // activar cuando tengamos las rutas 
 
-app.listen(APP_PORT, () => {
-  console.log(`\n[Express] Servidor corriendo en el puerto ${APP_PORT}.`);
-  console.log(`[Express] Ingresar a http://localhost:${APP_PORT}.\n`);
+app.get('/', (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pastelería API</title>
+      <style>
+        body { 
+          font-family: Arial, sans-serif; 
+          background-color: #fdf6f0; 
+          text-align: center; 
+          padding-top: 40px;
+        }
+        h1 { color: #d77a61; }
+        .box {
+          background: white;
+          padding: 20px;
+          margin: auto;
+          width: 300px;
+          border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(0,0,0,.1);
+        }
+      </style>
+    </head>
+    <body>
+      <div class="box">
+        <h1>🍰 Pastelería API</h1>
+        <p>Bienvenido a la API de la pastelería.</p>
+        <p><a href="/postres">Ver Postres</a></p>
+      </div>
+    </body>
+    </html>
+  `);
 });
+
+
+const PORT = process.env.APP_PORT;
+
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('DB conectada');
+    return sequelize.sync({ alter: true }); // crea/actualiza tablas
+  })
+  .then(() => {
+    app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));
+  })
+  .catch((err) => console.error('Error DB:', err));
+
+module.exports = app; 
