@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
-const sequelize = require('./database.js');
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+const sequelize = require("./database.js");
 
 // Las rutas vamos a importarlas asi
 // const userRoutes = require('./routes/usuarios.routes');
@@ -11,9 +11,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// app.use('/usuarios', userRoutes); // activar cuando tengamos las rutas 
+// app.use('/usuarios', userRoutes); // activar cuando tengamos las rutas
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html lang="es">
@@ -50,18 +50,17 @@ app.get('/', (req, res) => {
   `);
 });
 
-
 const PORT = process.env.APP_PORT;
 
 sequelize
   .authenticate()
   .then(() => {
-    console.log('DB conectada');
+    console.log("DB conectada");
     return sequelize.sync({ alter: true }); // crea/actualiza tablas
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));
   })
-  .catch((err) => console.error('Error DB:', err));
+  .catch((err) => console.error("Error DB:", err));
 
-module.exports = app; 
+module.exports = app;
