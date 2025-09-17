@@ -1,18 +1,20 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const articleController = require("../controllers/articleController");
+const articleController = require('../controllers/articleController');
 
-/*
- * API endpoints relacionados a los artículos.
- *
- * Notar que todos estos endpoints tienen como prefijo el string "/articles",
- * tal como se definió en el archivo `routes/index.js`.
- */
+// Middleware para validación (opcional)
+// const { validateArticle, validatePagination } = require('../middleware/validation');
+// const auth = require('../middleware/auth'); 
 
-router.get("/", articleController.index);
-router.post("/", articleController.store);
-router.get("/:id", articleController.show);
-router.patch("/:id", articleController.update);
-router.delete("/:id", articleController.destroy);
+router.get('/', articleController.index);                    // GET /articles
+router.get('/:id', articleController.show);                 // GET /articles/:id
+router.post('/', articleController.store);                  // POST /articles
+router.put('/:id', articleController.update);               // PUT /articles/:id
+router.delete('/:id', articleController.destroy);           // DELETE /articles/:id
+
+// Routes especiales
+router.get('/dietary/:type', articleController.getByDietaryRestrictions); // GET /articles/dietary/vegan
+router.get('/category/:category', articleController.getByCategory);       // GET /articles/category/tortas
+router.patch('/:id/stock', articleController.updateStock);                // PATCH /articles/:id/stock
 
 module.exports = router;
