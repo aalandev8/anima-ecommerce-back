@@ -18,6 +18,8 @@ module.exports = (app) => {
    * (en inglés y en plural). Del mismo modo, las rutas relativas a los artículos
    * se deberían agrupar bajo la URL `/articles` (en inglés y en plural).
    */
+  app.get("/", (req, res) => res.send("Hola!"));
+
   app.use("/users", userRoutes);
   app.use("/articles", articleRoutes);
   app.use("/examples", exampleRoutes);

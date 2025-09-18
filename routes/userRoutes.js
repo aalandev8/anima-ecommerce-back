@@ -9,22 +9,24 @@ const userController = require("../controllers/userController");
  * tal como se definió en el archivo `routes/index.js`.
  */
 
-router.get("/", userController.index);
-router.post("/", userController.store);
-router.get("/:id", userController.show);
-router.patch("/:id", userController.update);
-router.delete("/:id", userController.destroy);
-
-module.exports = router;
+// routes/userRoutes.js
 
 const express = require("express");
+
 const { authenticateToken, requireAdmin } = require("../middlewares/auth");
+
 const userController = require("../controllers/userController");
 
+router.get("/test", userController.test);
+
 router.post("/register", userController.register);
+
 router.post("/login", userController.login);
-router.get("/:id", authenticateToken, userController.getUser);
-router.put("/:id", authenticateToken, userController.updateUser);
-router.delete("/:id", authenticateToken, requireAdmin, userController.deleteUser);
+
+router.get("/:id", userController.getUser);
+
+router.put("/:id", userController.updateUser);
+
+router.delete("/:id", userController.deleteUser);
 
 module.exports = router;
