@@ -10,14 +10,12 @@ class User extends Model {
         password: { type: DataTypes.STRING(200), allowNull: false },
         phone: { type: DataTypes.STRING(20) },
         address: { type: DataTypes.TEXT },
-        created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
       },
       {
         sequelize,
-        modelName: "User",
+        modelName: "user",
         tableName: "users",
-        timestamps: false
-      }
+      },
     );
     return User;
   }

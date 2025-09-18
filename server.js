@@ -1,15 +1,15 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 
 // Importamos la conexión y todos los modelos
 const { sequelize } = require("./models/index");
-const User = require('./models/user');
-const Category = require('./models/category');
-const Product = require('./models/product');
-const Order = require('./models/order');
-const Log = require('./models/log');
-const CartItem = require('./models/cartItem');
+const User = require("./models/user");
+const Category = require("./models/Category");
+const Product = require("./models/Product");
+const Order = require("./models/Order");
+const Log = require("./models/log");
+const CartItem = require("./models/cartItem");
 
 const app = express();
 
@@ -25,7 +25,7 @@ Log.initModel(sequelize);
 CartItem.initModel(sequelize);
 
 // Ruta principal
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.send(`
     <!DOCTYPE html>
     <html lang="es">
@@ -84,5 +84,3 @@ const startServer = async () => {
 startServer();
 
 module.exports = app;
-
-

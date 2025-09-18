@@ -5,23 +5,15 @@ class Order extends Model {
     Order.init(
       {
         id: { type: DataTypes.INTEGER.UNSIGNED, autoIncrement: true, primaryKey: true },
-        user_id: {
-          type: DataTypes.INTEGER.UNSIGNED, // igual que User.id
-          allowNull: false,
-          references: { model: "users", key: "id" },
-          onUpdate: "CASCADE",
-          onDelete: "CASCADE"
-        },
+        items: { type: DataTypes.JSON },
         total: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
         status: { type: DataTypes.STRING(50), defaultValue: "pendiente" },
-        created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW }
       },
       {
         sequelize,
-        modelName: "Order",
+        modelName: "order",
         tableName: "orders",
-        timestamps: false
-      }
+      },
     );
     return Order;
   }
