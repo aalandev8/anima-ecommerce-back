@@ -1,6 +1,21 @@
 const { Sequelize } = require("sequelize");
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
 
-// Configuración conexión
+const authRoutes = require("../routes/authRoutes");
+
+const app = express();
+app.use(express.json());
+app.use(cors({ origin: "http://localhost:3000" }));
+
+app.use("/api/auth", authRoutes);
+
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
+});
+
 const sequelize = new Sequelize(
   process.env.DB_DATABASE,
   process.env.DB_USERNAME,
@@ -12,26 +27,11 @@ const sequelize = new Sequelize(
   },
 );
 
-// Importar modelos
-const User = require("./user");
-const Category = require("./Category");
-const Product = require("./Product");
-const Order = require("./Order");
+const User = require("./User");
+const Article = require("./Article");
 
-// Inicializar modelos
 User.initModel(sequelize);
-Category.initModel(sequelize);
-Product.initModel(sequelize);
-Order.initModel(sequelize);
-
-// Definir relaciones
-// 🔹 Users
-User.hasMany(Order);
-Order.belongsTo(User);
-
-// 🔹 Categories ↔ Products
-Category.hasMany(Product);
-Product.belongsTo(Category);
+Article.initModel(sequelize);
 
 module.exports = {
   sequelize,

@@ -1,30 +1,24 @@
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
+const sequelize = require("./database.js");
 
-// Importamos la conexión y todos los modelos
-const { sequelize } = require("./models/index");
-const User = require("./models/user");
-const Category = require("./models/Category");
-const Product = require("./models/Product");
-const Order = require("./models/Order");
-const Log = require("./models/log");
-const CartItem = require("./models/cartItem");
+const express = require("express");
+const cors = require("cors");
+
+const authRoutes = require("../routes/authRoutes");
 
 const app = express();
-
-app.use(cors());
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:3000" }));
 
-// Inicializar modelos
-User.initModel(sequelize);
-Category.initModel(sequelize);
-Product.initModel(sequelize);
-Order.initModel(sequelize);
-Log.initModel(sequelize);
-CartItem.initModel(sequelize);
+app.use("/api/auth", authRoutes);
 
-// Ruta principal
+// Las rutas vamos a importarlas asi
+// const userRoutes = require('./routes/usuarios.routes');
+
+// app.use('/usuarios', userRoutes); // activar cuando tengamos las rutas
+
 app.get("/", (req, res) => {
   res.send(`
     <!DOCTYPE html>
@@ -55,6 +49,7 @@ app.get("/", (req, res) => {
       <div class="box">
         <h1>🍰 Pastelería API</h1>
         <p>Bienvenido a la API de la pastelería.</p>
+        <p><a href="/postres">Ver Postres</a></p>
       </div>
     </body>
     </html>
@@ -64,23 +59,16 @@ app.get("/", (req, res) => {
 // Conexión a la DB y sincronización de tablas
 const PORT = process.env.APP_PORT || 3000;
 
-const startServer = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("DB conectada correctamente");
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("DB conectada");
+    return sequelize.sync({ alter: true });
+  })
+  .then(() => {
+    app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));
+  })
+  .catch((err) => console.error("Error DB:", err));
 
-    // ⚡ Sincroniza tablas según modelos sin borrar datos
-    await sequelize.sync({ alter: true });
-    console.log("Tablas sincronizadas correctamente");
-
-    app.listen(PORT, () => {
-      console.log(`Servidor corriendo en puerto ${PORT}`);
-    });
-  } catch (error) {
-    console.error("Error al conectar DB:", error);
-  }
-};
-
-startServer();
-
+module.exports = app;
 module.exports = app;
