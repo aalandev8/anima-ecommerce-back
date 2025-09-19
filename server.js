@@ -3,13 +3,19 @@ const cors = require("cors");
 require("dotenv").config();
 const sequelize = require("./database.js");
 
-// Las rutas vamos a importarlas asi
-// const userRoutes = require('./routes/usuarios.routes');
+const express = require("express");
+const cors = require("cors");
+
+const authRoutes = require("../routes/authRoutes");
 
 const app = express();
-
-app.use(cors());
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:3000" }));
+
+app.use("/api/auth", authRoutes);
+
+// Las rutas vamos a importarlas asi
+// const userRoutes = require('./routes/usuarios.routes');
 
 // app.use('/usuarios', userRoutes); // activar cuando tengamos las rutas
 
@@ -50,7 +56,7 @@ app.get("/", (req, res) => {
   `);
 });
 
-const PORT = process.env.APP_PORT;
+const PORT = process.env.APP_PORT || 3001;
 
 sequelize
   .authenticate()
