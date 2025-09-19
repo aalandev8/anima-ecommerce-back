@@ -16,7 +16,6 @@ app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
 
-// Configuración conexión
 const sequelize = new Sequelize(
   process.env.DB_DATABASE,
   process.env.DB_USERNAME,
@@ -28,36 +27,12 @@ const sequelize = new Sequelize(
   },
 );
 
-<<<<<<< HEAD
 const User = require("./User");
 const Article = require("./Article");
 
-=======
-// Importar modelos
-const User = require("./user");
-const Category = require("./Category");
-const Product = require("./Product");
-const Order = require("./Order");
-
-// Inicializar modelos
->>>>>>> main
 User.initModel(sequelize);
-Category.initModel(sequelize);
-Product.initModel(sequelize);
-Order.initModel(sequelize);
+Article.initModel(sequelize);
 
-<<<<<<< HEAD
-=======
-// Definir relaciones
-// 🔹 Users
-User.hasMany(Order);
-Order.belongsTo(User);
-
-// 🔹 Categories ↔ Products
-Category.hasMany(Product);
-Product.belongsTo(Category);
-
->>>>>>> main
 module.exports = {
   sequelize,
   User,
