@@ -7,9 +7,11 @@ const express = require("express");
 const cors = require("cors");
 
 const authRoutes = require("../routes/authRoutes");
+const categoryRoutes = require('./routes/categoryRoutes');
 
 const app = express();
 app.use(express.json());
+app.use('/api/categories', categoryRoutes);
 app.use(cors({ origin: "http://localhost:3000" }));
 
 app.use("/api/auth", authRoutes);
@@ -70,5 +72,4 @@ sequelize
   })
   .catch((err) => console.error("Error DB:", err));
 
-module.exports = app;
 module.exports = app;
