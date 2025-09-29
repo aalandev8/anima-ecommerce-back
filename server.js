@@ -3,23 +3,12 @@ const cors = require("cors");
 require("dotenv").config();
 const sequelize = require("./database.js");
 
-const express = require("express");
-const cors = require("cors");
-
-const authRoutes = require("../routes/authRoutes");
-const categoryRoutes = require('./routes/categoryRoutes');
-
 const app = express();
 app.use(express.json());
-app.use('/api/categories', categoryRoutes);
 app.use(cors({ origin: "http://localhost:3000" }));
 
-app.use("/api/auth", authRoutes);
-
-// Las rutas vamos a importarlas asi
-// const userRoutes = require('./routes/usuarios.routes');
-
-// app.use('/usuarios', userRoutes); // activar cuando tengamos las rutas
+const routes = require("./routes");
+routes(app);
 
 app.get("/", (req, res) => {
   res.send(`
@@ -41,9 +30,16 @@ app.get("/", (req, res) => {
           background: white;
           padding: 20px;
           margin: auto;
-          width: 300px;
+          width: 400px;
           border-radius: 8px;
           box-shadow: 0 2px 6px rgba(0,0,0,.1);
+        }
+        .endpoints {
+          text-align: left;
+          margin-top: 20px;
+        }
+        .endpoints li {
+          margin: 8px 0;
         }
       </style>
     </head>
@@ -51,14 +47,22 @@ app.get("/", (req, res) => {
       <div class="box">
         <h1>🍰 Pastelería API</h1>
         <p>Bienvenido a la API de la pastelería.</p>
-        <p><a href="/postres">Ver Postres</a></p>
+        <div class="endpoints">
+          <h3>Endpoints disponibles:</h3>
+          <ul>
+            <li><strong>Auth:</strong> POST /api/auth/login</li>
+            <li><strong>Categories:</strong> GET /api/categories</li>
+            <li><strong>Products:</strong> GET /api/products</li>
+            <li><strong>Users:</strong> GET /api/users</li>
+            <li><strong>Articles:</strong> GET /api/articles</li>
+          </ul>
+        </div>
       </div>
     </body>
     </html>
   `);
 });
 
-// Conexión a la DB y sincronización de tablas
 const PORT = process.env.APP_PORT || 3000;
 
 sequelize

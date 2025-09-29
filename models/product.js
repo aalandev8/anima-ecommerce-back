@@ -17,9 +17,9 @@ class Product extends Model {
           references: {
             model: "categories",
             key: "id",
-        }
+          },
+        },
       },
-      }
       {
         sequelize,
         modelName: "product",
@@ -29,10 +29,10 @@ class Product extends Model {
     return Product;
   }
 
- static associate(models) {
+  static associate(models) {
     Product.belongsTo(models.Category, {
-      foreignKey: 'category_id',
-      as: 'category'
+      foreignKey: "category_id",
+      as: "category",
     });
   }
 }

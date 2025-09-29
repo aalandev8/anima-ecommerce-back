@@ -1,8 +1,6 @@
-
-const Category = require('../models/Category');
+const { Category, Product } = require("../models");
 
 const categoryController = {
-
   getAllCategories: async (req, res) => {
     try {
       const categories = await Category.findAll();
@@ -12,12 +10,11 @@ const categoryController = {
     }
   },
 
-  
   getCategoryById: async (req, res) => {
     try {
       const category = await Category.findByPk(req.params.id);
       if (!category) {
-        return res.status(404).json({ message: 'Categoría no encontrada' });
+        return res.status(404).json({ message: "Categoría no encontrada" });
       }
       res.json(category);
     } catch (error) {
@@ -25,7 +22,6 @@ const categoryController = {
     }
   },
 
- 
   createCategory: async (req, res) => {
     try {
       const category = await Category.create(req.body);
@@ -35,17 +31,16 @@ const categoryController = {
     }
   },
 
-
   updateCategory: async (req, res) => {
     try {
       const [updated] = await Category.update(req.body, {
-        where: { id: req.params.id }
+        where: { id: req.params.id },
       });
       if (updated) {
         const category = await Category.findByPk(req.params.id);
         res.json(category);
       } else {
-        res.status(404).json({ message: 'Categoría no encontrada' });
+        res.status(404).json({ message: "Categoría no encontrada" });
       }
     } catch (error) {
       res.status(400).json({ error: error.message });
@@ -55,17 +50,17 @@ const categoryController = {
   deleteCategory: async (req, res) => {
     try {
       const deleted = await Category.destroy({
-        where: { id: req.params.id }
+        where: { id: req.params.id },
       });
       if (deleted) {
         res.status(204).send();
       } else {
-        res.status(404).json({ message: 'Categoría no encontrada' });
+        res.status(404).json({ message: "Categoría no encontrada" });
       }
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
-  }
+  },
 };
 
 module.exports = categoryController;
