@@ -2,55 +2,81 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
-// Descomentar cuando tengas database.js configurado
-// const sequelize = require("./database.js");
-
-// Descomentar cuando tengamos las rutas listas
-// const userRoutes = require("./routes/userRoutes");
+const sequelize = require("./database.js");
+const routes = require("./routes");
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+app.use(cors({ origin: "http://localhost:3000" }));
 
-// Activar cuando tengamos las rutas
-// app.use("/usuarios", userRoutes);
+// Enrutador principal
+routes(app);
 
-app.get("/usuarios/test", (req, res) => {
-  res.json({
-    success: true,
-    message: "UserController test funcionando! 🚀",
-    note: "Esta es una ruta temporal. Para funcionalidad completa, implementar routes/userRoutes.js",
-    timestamp: new Date().toISOString(),
-  });
+// Ruta principal de bienvenida
+app.get("/", (req, res) => {
+  res.send(`
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pastelería API</title>
+      <style>
+        body { 
+          font-family: Arial, sans-serif; 
+          background-color: #fdf6f0; 
+          text-align: center; 
+          padding-top: 40px;
+        }
+        h1 { color: #d77a61; }
+        .box {
+          background: white;
+          padding: 20px;
+          margin: auto;
+          width: 400px;
+          border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(0,0,0,.1);
+        }
+        .endpoints {
+          text-align: left;
+          margin-top: 20px;
+        }
+        .endpoints li {
+          margin: 8px 0;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="box">
+        <h1>🍰 Pastelería API</h1>
+        <p>Bienvenido a la API de la pastelería.</p>
+        <div class="endpoints">
+          <h3>Endpoints disponibles:</h3>
+          <ul>
+            <li><strong>Auth:</strong> POST /api/auth/login</li>
+            <li><strong>Categories:</strong> GET /api/categories</li>
+            <li><strong>Products:</strong> GET /api/products</li>
+            <li><strong>Users:</strong> GET /api/users</li>
+            <li><strong>Articles:</strong> GET /api/articles</li>
+          </ul>
+        </div>
+      </div>
+    </body>
+    </html>
+  `);
 });
 
-app.post("/usuarios/login", (req, res) => {
-  res.json({
-    success: true,
-    message: "Login endpoint funcionando (temporal)",
-    note: "Implementar lógica real en controllers/userController.js",
-    receivedData: req.body,
-  });
-});
-
-app.post("/usuarios/register", (req, res) => {
-  res.json({
-    success: true,
-    message: "Register endpoint funcionando (temporal)",
-    note: "Implementar lógica real en controllers/userController.js",
-    receivedData: req.body,
-  });
-});
-
+// Ruta no encontrada
 app.use("*", (req, res) => {
   res.status(404).json({
     success: false,
     message: `Ruta ${req.originalUrl} no encontrada`,
-    availableRoutes: ["/", "/api/status", "/usuarios/test"],
+    availableRoutes: ["/", "/api/status"],
   });
 });
 
+// Manejador de errores
 app.use((error, req, res, next) => {
   console.error("❌ Error:", error);
   res.status(500).json({
@@ -61,26 +87,7 @@ app.use((error, req, res, next) => {
 
 const PORT = process.env.APP_PORT || process.env.PORT || 3000;
 
-// Versión simple.
-app.listen(PORT, () => {
-  console.log("\n =====================================");
-  console.log(`   SERVIDOR INICIADO CORRECTAMENTE`);
-  console.log(" =====================================");
-  console.log(` URL: http://localhost:${PORT}`);
-  console.log(` Hora: ${new Date().toLocaleString()}`);
-  console.log(" Rutas disponibles:");
-  console.log(`   • GET  http://localhost:${PORT}/`);
-  console.log(`   • GET  http://localhost:${PORT}/api/status`);
-  console.log(`   • GET  http://localhost:${PORT}/usuarios/test`);
-  console.log(`   • POST http://localhost:${PORT}/usuarios/login`);
-  console.log(`   • POST http://localhost:${PORT}/usuarios/register`);
-  console.log(" =====================================");
-  console.log("Base de datos deshabilitada temporalmente");
-  console.log("Para habilitar BD, configurar database.js");
-  console.log(" =====================================\n");
-});
-
-// Versión de base de datos (comentada hasta que esté configurada)
+// Activar esta sección si quieres conectar a la base de datos
 /*
 sequelize
   .authenticate()
@@ -101,5 +108,10 @@ sequelize
     });
   });
 */
+
+// Si no estás usando base de datos aún, usa esta:
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
 
 module.exports = app;

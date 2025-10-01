@@ -15,57 +15,49 @@ async function update(req, res) {}
 // Remove the specified resource from storage.
 async function destroy(req, res) {}
 
+// Otros handlers...
+// ...
+
+module.exports = {
+  index,
+  show,
+  store,
+  update,
+  destroy,
+};
+
+const { sendResponse, generateToken } = require("../middlewares/auth");
+
+const login = async (req, res) => {
+  try {
+    return sendResponse(res, 200, true, "Login exitoso", {
+      user: userInfo,
+      token: generateToken(user),
+    });
+  } catch (error) {
+    return sendResponse(res, 500, false, "Error interno del servidor");
+  }
+};
+
+const { sendResponse, generateToken } = require("../middlewares/auth");
 const bcrypt = require("bcrypt");
 const { User } = require("../models");
 
 const userController = {
+  // Función de prueba
   test: (req, res) => {
-    return sendResponse(res, 200, true, "UserController funcionando perfectamente! 🚀");
+    return sendResponse(res, 200, true, "UserController funcionando!");
   },
 
-  register: async (req, res) => {
-    try {
-      return sendResponse(res, 200, true, "Register function working", {
-        message: "Register endpoint funcionando, falta implementar lógica real",
-      });
-    } catch (error) {
-      console.error("Error en register:", error);
-      return sendResponse(res, 500, false, "Error interno del servidor");
-    }
+  login: async (req, res) => {
+    // Aquí va a ir la lógica de login:
+    // - Buscar usuario por email
+    // - Comparar contraseñas
+    // - Generar token
+    // - Responder
   },
 
-  getUser: async (req, res) => {
-    try {
-      return sendResponse(res, 200, true, "GetUser function working", {
-        message: "GetUser endpoint funcionando, falta implementar lógica real",
-      });
-    } catch (error) {
-      console.error("Error en getUser:", error);
-      return sendResponse(res, 500, false, "Error interno del servidor");
-    }
-  },
-
-  updateUser: async (req, res) => {
-    try {
-      return sendResponse(res, 200, true, "UpdateUser function working", {
-        message: "UpdateUser endpoint funcionando, falta implementar lógica real",
-      });
-    } catch (error) {
-      console.error("Error en updateUser:", error);
-      return sendResponse(res, 500, false, "Error interno del servidor");
-    }
-  },
-
-  deleteUser: async (req, res) => {
-    try {
-      return sendResponse(res, 200, true, "DeleteUser function working", {
-        message: "DeleteUser endpoint funcionando, falta implementar lógica real",
-      });
-    } catch (error) {
-      console.error("Error en deleteUser:", error);
-      return sendResponse(res, 500, false, "Error interno del servidor");
-    }
-  },
+  // ... más funciones
 };
 
 module.exports = userController;
