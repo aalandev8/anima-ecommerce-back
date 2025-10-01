@@ -69,7 +69,7 @@ sequelize
   .authenticate()
   .then(() => {
     console.log("DB conectada");
-    return sequelize.sync({ alter: true });
+    return sequelize.sync({ force: false });
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));

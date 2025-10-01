@@ -18,12 +18,22 @@ const faker = require("@faker-js/faker").fakerES;
 const { User } = require("../models");
 
 module.exports = async () => {
+  // Clear existing users first
+  await User.destroy({ where: {} });
+  console.log("🗑️  Existing users cleared");
+
   const users = [];
 
   for (let i = 0; i < 100; i++) {
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
+    
     users.push({
-      firstname: faker.person.firstName(),
-      lastname: faker.person.lastName(),
+      name: `${firstName} ${lastName}`,
+      email: faker.internet.email({ firstName, lastName }).toLowerCase(),
+      password: "$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi", // password123
+      phone: faker.phone.number(),
+      address: faker.location.streetAddress({ useFullAddress: true }),
     });
   }
 

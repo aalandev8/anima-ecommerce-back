@@ -1,12 +1,14 @@
 const sequelize = require("../database.js");
 
-const Category = require("./Category");
-const Product = require("./Product");
+const Category = require("./category");
+const Product = require("./product");
 const User = require("./User");
+const Order = require("./order");
 
 Category.initModel(sequelize);
 Product.initModel(sequelize);
 User.initModel(sequelize);
+Order.initModel(sequelize);
 
 Category.hasMany(Product, {
   foreignKey: "category_id",
@@ -23,4 +25,5 @@ module.exports = {
   Category,
   Product,
   User,
+  Order,
 };
