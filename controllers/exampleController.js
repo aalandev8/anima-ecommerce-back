@@ -1,38 +1,42 @@
-/*
- * Este archivo se puede usar como referencia para crear el controlador de
- * cualquier entidad del sistema.
- *
- * Por ejemplo, si se necesita crear un controlador para la entidad `Student`,
- * se sugiere hacer Copy & Paste de este archivo y nombrarlo como
- * `studentController.js`.
- *
- * No es necesario renombrar los métodos. A priori, la idea es que todos los
- * controladores tengan estos 5 métodos: index, show, store, update y destroy.
- *
- */
+const exampleController = {
+  index: (req, res) => {
+    res.json({
+      message: "Example endpoint - list all examples",
+      examples: [],
+    });
+  },
 
-// Display a listing of the resource.
-async function index(req, res) {}
+  store: (req, res) => {
+    res.json({
+      message: "Example endpoint - create new example",
+      data: req.body,
+    });
+  },
 
-// Display the specified resource.
-async function show(req, res) {}
+  show: (req, res) => {
+    const { id } = req.params;
+    res.json({
+      message: `Example endpoint - show example with id ${id}`,
+      id: id,
+    });
+  },
 
-// Store a newly created resource in storage.
-async function store(req, res) {}
+  update: (req, res) => {
+    const { id } = req.params;
+    res.json({
+      message: `Example endpoint - update example with id ${id}`,
+      id: id,
+      data: req.body,
+    });
+  },
 
-// Update the specified resource in storage.
-async function update(req, res) {}
-
-// Remove the specified resource from storage.
-async function destroy(req, res) {}
-
-// Otros handlers...
-// ...
-
-module.exports = {
-  index,
-  show,
-  store,
-  update,
-  destroy,
+  destroy: (req, res) => {
+    const { id } = req.params;
+    res.json({
+      message: `Example endpoint - delete example with id ${id}`,
+      id: id,
+    });
+  },
 };
+
+module.exports = exampleController;

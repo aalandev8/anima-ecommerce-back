@@ -1,4 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
+const { all } = require("../server");
 
 class Product extends Model {
   static initModel(sequelize) {
@@ -10,6 +11,14 @@ class Product extends Model {
         price: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
         stock: { type: DataTypes.INTEGER, defaultValue: 0 },
         image_url: { type: DataTypes.TEXT },
+        category_id: {
+          type: DataTypes.INTEGER.UNSIGNED,
+          allowNull: false,
+          references: {
+            model: "categories",
+            key: "id",
+          },
+        },
       },
       {
         sequelize,
@@ -18,6 +27,13 @@ class Product extends Model {
       },
     );
     return Product;
+  }
+
+  static associate(models) {
+    Product.belongsTo(models.Category, {
+      foreignKey: "category_id",
+      as: "category",
+    });
   }
 }
 
