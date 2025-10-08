@@ -19,6 +19,14 @@ class Product extends Model {
             key: "id",
           },
         },
+        store_id: {
+          type: DataTypes.INTEGER.UNSIGNED,
+          allowNull: false,
+          references: {
+            model: "stores",
+            key: "id",
+          },
+        },
       },
       {
         sequelize,
