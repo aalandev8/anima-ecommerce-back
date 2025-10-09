@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const { User } = require("../models");
-const { generateToken, sendResponse } = require("../middlewares/auth");
+const { generateToken, sendResponse } = require("../middlewares/authMiddleware");
 
 async function register(req, res) {
   try {

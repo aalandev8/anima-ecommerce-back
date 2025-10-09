@@ -1,12 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const productController = require("../controllers/productController");
-const {
-  validateProduct,
-  validateId,
-  validateCategoryId,
-} = require("../middlewares/validation");
-const { authenticateToken, requireAdmin } = require("../middlewares/auth");
+const { validateProduct, validateId, validateCategoryId } = require("../middlewares/validation");
+const { authenticateToken, requireAdmin } = require("../middlewares/authMiddleware");
 
 router.get("/", productController.getAllProducts);
 router.get("/category/:categoryId", validateCategoryId, productController.getProductsByCategory);
@@ -18,7 +14,7 @@ router.put(
   authenticateToken,
   requireAdmin,
   validateId,
-  validateProductUpdate,
+
   productController.updateProduct,
 );
 router.delete("/:id", authenticateToken, requireAdmin, validateId, productController.deleteProduct);

@@ -1,4 +1,4 @@
-const { sendResponse, generateToken } = require("../middlewares/auth");
+const { sendResponse, generateToken } = require("../middlewares/authMiddleware");
 const bcrypt = require("bcrypt");
 const { User } = require("../models");
 

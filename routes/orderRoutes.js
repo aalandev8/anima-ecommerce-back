@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const orderController = require("../controllers/orderController");
-const { authenticateToken } = require("../middlewares/auth"); // ✅ auth
+const { authenticateToken } = require("../middlewares/authMiddleware"); // auth
 
 // 🟢 Crear una orden (solo usuarios logueados)
 router.post("/", authenticateToken, orderController.createOrder);
