@@ -1,20 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const orderController = require("../controllers/orderController");
+const { authenticateToken } = require("../middlewares/auth"); // ✅ auth
 
-// crea la orden
-router.post("/", orderController.createOrder);
+// 🟢 Crear una orden (solo usuarios logueados)
+router.post("/", authenticateToken, orderController.createOrder);
 
-// obtiene todas las órdenes
-router.get("/", orderController.getAllOrders);
+// 🟢 Obtener todas las órdenes del usuario (cliente) o todas (admin)
+router.get("/", authenticateToken, orderController.getAllOrders);
 
-// me da  una orden por ID
-router.get("/:id", orderController.getOrderById);
+// 🟢 Obtener una orden por ID (solo dueño de la orden o admin)
+router.get("/:id", authenticateToken, orderController.getOrderById);
 
-// actualiza una orden
-router.put("/:id", orderController.updateOrder);
+// 🔒 Actualizar una orden (solo admin)
+router.put("/:id", authenticateToken, orderController.updateOrder);
 
-// elimina una orden
-router.delete("/:id", orderController.deleteOrder);
+// 🔒 Eliminar una orden (solo admin)
+router.delete("/:id", authenticateToken, orderController.deleteOrder);
 
 module.exports = router;

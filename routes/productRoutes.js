@@ -6,12 +6,21 @@ const {
   validateId,
   validateCategoryId,
 } = require("../middlewares/validation");
+const { authenticateToken, requireAdmin } = require("../middlewares/auth");
 
 router.get("/", productController.getAllProducts);
 router.get("/category/:categoryId", validateCategoryId, productController.getProductsByCategory);
 router.get("/:id", validateId, productController.getProductById);
-router.post("/", validateProduct, productController.createProduct);
-router.put("/:id", validateId, productController.updateProduct);
-router.delete("/:id", validateId, productController.deleteProduct);
+
+router.post("/", authenticateToken, requireAdmin, validateProduct, productController.createProduct);
+router.put(
+  "/:id",
+  authenticateToken,
+  requireAdmin,
+  validateId,
+  validateProductUpdate,
+  productController.updateProduct,
+);
+router.delete("/:id", authenticateToken, requireAdmin, validateId, productController.deleteProduct);
 
 module.exports = router;

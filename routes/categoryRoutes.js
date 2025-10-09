@@ -6,11 +6,32 @@ const {
   validateCategoryUpdate,
   validateId,
 } = require("../middlewares/validation");
+const { authenticateToken, requireAdmin } = require("../middlewares/auth"); // ✅ importás auth
 
 router.get("/", categoryController.getAllCategories);
 router.get("/:id", validateId, categoryController.getCategoryById);
-router.post("/", validateCategory, categoryController.createCategory);
-router.put("/:id", validateId, validateCategoryUpdate, categoryController.updateCategory);
-router.delete("/:id", validateId, categoryController.deleteCategory);
+
+router.post(
+  "/",
+  authenticateToken,
+  requireAdmin,
+  validateCategory,
+  categoryController.createCategory,
+);
+router.put(
+  "/:id",
+  authenticateToken,
+  requireAdmin,
+  validateId,
+  validateCategoryUpdate,
+  categoryController.updateCategory,
+);
+router.delete(
+  "/:id",
+  authenticateToken,
+  requireAdmin,
+  validateId,
+  categoryController.deleteCategory,
+);
 
 module.exports = router;
