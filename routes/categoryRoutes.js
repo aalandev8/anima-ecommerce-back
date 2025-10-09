@@ -5,7 +5,7 @@ const {
   validateCategory,
   validateCategoryUpdate,
   validateId,
-} = require('../middlewares/validation');
+} = require("../middlewares/validation");
 
 router.get("/", categoryController.getAllCategories);
 router.get("/:id", validateId, categoryController.getCategoryById);

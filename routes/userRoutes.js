@@ -1,9 +1,10 @@
 
 
 const express = require("express");
-const router = express.Router();
 const { authenticateToken, requireAdmin } = require("../middlewares/auth");
 const userController = require("../controllers/userController");
+
+router = express.Router();
 
 router.post("/register", userController.register);
 router.post("/login", userController.login);
