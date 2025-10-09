@@ -1,7 +1,7 @@
 const sequelize = require("../database.js");
 
 const Category = require("./category");
-const Product = require("./Product");
+const Product = require("./product");
 const User = require("./User");
 
 Category.initModel(sequelize);
