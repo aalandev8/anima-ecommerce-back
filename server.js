@@ -7,8 +7,14 @@ const app = express();
 app.use(express.json());
 app.use(cors({ origin: "http://localhost:3000" }));
 
-const routes = require("./routes");
-routes(app);
+// Importar rutas de los modelos
+const routes = require("./routes"); // Rutas generales para otros modelos
+const storeRoutes = require("./routes/storeRoutes"); // Rutas de Store
+
+// Configurar las rutas
+app.use("/api/stores", storeRoutes); // Ruta para manejar tiendas
+
+routes(app); // Otras rutas generales
 
 app.get("/", (req, res) => {
   res.send(`
@@ -55,6 +61,7 @@ app.get("/", (req, res) => {
             <li><strong>Products:</strong> GET /api/products</li>
             <li><strong>Users:</strong> GET /api/users</li>
             <li><strong>Articles:</strong> GET /api/articles</li>
+            <li><strong>Stores:</strong> GET /api/stores</li> <!-- Endpoint para Store -->
           </ul>
         </div>
       </div>
