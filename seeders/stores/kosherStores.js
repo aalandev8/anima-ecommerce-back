@@ -9,7 +9,10 @@ const kosherStores = [
     deliveryTime: "35-45 min",
     deliveryFee: 0,
     featured: true,
-    tags: ["Carne", "Parrilla", "Certificado"]
+    tags: ["Carne", "Parrilla", "Certificado"],
+    address: "Pocitos, Av. Rivera 3845, Montevideo",
+    phone: "+598 2712 4567",
+    email: "info@kosherdelight.com.uy"
   },
   {
     id: 2,
@@ -21,7 +24,10 @@ const kosherStores = [
     deliveryTime: "25-35 min",
     deliveryFee: 150,
     featured: false,
-    tags: ["Israelí", "Mediterráneo", "Vegetariano"]
+    tags: ["Israelí", "Mediterráneo", "Vegetariano"],
+    address: "Punta Carretas, Ellauri 567, Montevideo",
+    phone: "+598 2710 8901",
+    email: "pedidos@jerusalemflavors.com.uy"
   },
   {
     id: 3,
@@ -33,7 +39,10 @@ const kosherStores = [
     deliveryTime: "40-50 min",
     deliveryFee: 200,
     featured: true,
-    tags: ["Panadería", "Tradicional", "Shabbat"]
+    tags: ["Panadería", "Tradicional", "Shabbat"],
+    address: "Villa Muñoz, Av. 8 de Octubre 2234, Montevideo",
+    phone: "+598 2481 3456",
+    email: "contacto@shabbatkitchen.com.uy"
   },
   {
     id: 4,
@@ -45,7 +54,10 @@ const kosherStores = [
     deliveryTime: "30-40 min",
     deliveryFee: 0,
     featured: false,
-    tags: ["Sushi", "Japonés", "Premium"]
+    tags: ["Sushi", "Japonés", "Premium"],
+    address: "Carrasco, Av. Arocena 1678, Montevideo",
+    phone: "+598 2600 7890",
+    email: "reservas@koshersushi.com.uy"
   }
 ];
 

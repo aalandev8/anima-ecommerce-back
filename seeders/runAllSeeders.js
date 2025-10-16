@@ -1,7 +1,6 @@
 require("dotenv").config();
-const { sequelize } = require("../models"); // Ajustá la ruta si tu carpeta de modelos está en otro lugar
+const { sequelize } = require("../models");
 const path = require("path");
-const fs = require("fs");
 
 async function runAllSeeders() {
   try {
@@ -12,22 +11,22 @@ async function runAllSeeders() {
 
     console.log("[Seeders] Iniciando inserción de datos de prueba...\n");
 
-    // Buscar todos los archivos de seeders
-    const seedersDir = path.join(__dirname);
-    const seederFiles = fs
-      .readdirSync(seedersDir)
-      .filter(
-        (file) =>
-          file.endsWith(".js") &&
-          file !== "runAllSeeders.js" // Evitar ejecutar este mismo archivo
-      );
+    // Definir el orden manualmente
+    // Definir el orden manualmente
+const seederFiles = [
+  'storeSeeder.js',     // ✅ Primero limpia las tiendas
+  'userSeeder.js',      // ✅ Luego los usuarios
+  'categorySeeder.js',
+  'productSeeder.js',
+  'orderSeeder.js',
+  'articleSeeder.js'
+];
 
     // Ejecutar cada seeder en orden
     for (const file of seederFiles) {
       console.log(`➡️ Ejecutando: ${file}`);
-      const seeder = require(path.join(seedersDir, file));
+      const seeder = require(path.join(__dirname, file));
 
-      // Ejecutar el método up de cada seeder
       if (seeder.up) {
         await seeder.up(sequelize.getQueryInterface(), sequelize.constructor);
       }

@@ -9,7 +9,10 @@ const glutenFreeStores = [
     deliveryTime: "30-40 min",
     deliveryFee: 0,
     featured: true,
-    tags: ["Panadería", "Sin TACC", "Certificado"]
+    tags: ["Panadería", "Sin TACC", "Certificado"],
+    address: "Punta Carretas, Solano García 2567, Montevideo",
+    phone: "+598 2711 2345",
+    email: "info@glutenfreebakery.com.uy"
   },
   {
     id: 10,
@@ -21,7 +24,10 @@ const glutenFreeStores = [
     deliveryTime: "35-45 min",
     deliveryFee: 120,
     featured: true,
-    tags: ["Sin TACC", "Seguro", "Variedad"]
+    tags: ["Sin TACC", "Seguro", "Variedad"],
+    address: "Pocitos, Av. Brasil 2890, Montevideo",
+    phone: "+598 2709 8877",
+    email: "pedidos@celiacheaven.com.uy"
   },
   {
     id: 11,
@@ -33,7 +39,10 @@ const glutenFreeStores = [
     deliveryTime: "25-35 min",
     deliveryFee: 0,
     featured: false,
-    tags: ["Pizza", "Italiano", "Crujiente"]
+    tags: ["Pizza", "Italiano", "Crujiente"],
+    address: "Tres Cruces, Av. 8 de Octubre 3456, Montevideo",
+    phone: "+598 2480 5566",
+    email: "contacto@gfpizzahouse.com.uy"
   },
   {
     id: 12,
@@ -45,7 +54,10 @@ const glutenFreeStores = [
     deliveryTime: "40-50 min",
     deliveryFee: 180,
     featured: false,
-    tags: ["Pasta", "Artesanal", "Italiano"]
+    tags: ["Pasta", "Artesanal", "Italiano"],
+    address: "Carrasco, Av. Arocena 1523, Montevideo",
+    phone: "+598 2601 4433",
+    email: "reservas@pastawithoutlimits.com.uy"
   }
 ];
 

@@ -9,7 +9,10 @@ const halalStores = [
     deliveryTime: "35-45 min",
     deliveryFee: 0,
     featured: true,
-    tags: ["Parrilla", "Árabe", "Certificado"]
+    tags: ["Parrilla", "Árabe", "Certificado"],
+    address: "Ciudad Vieja, Rincón 456, Montevideo",
+    phone: "+598 2915 6789",
+    email: "info@halalgrillhouse.com.uy"
   },
   {
     id: 18,
@@ -21,7 +24,10 @@ const halalStores = [
     deliveryTime: "30-40 min",
     deliveryFee: 150,
     featured: false,
-    tags: ["Turco", "Mediterráneo", "Tradicional"]
+    tags: ["Turco", "Mediterráneo", "Tradicional"],
+    address: "Centro, Colonia 1234, Montevideo",
+    phone: "+598 2902 3344",
+    email: "pedidos@istanbulkitchen.com.uy"
   },
   {
     id: 19,
@@ -33,7 +39,10 @@ const halalStores = [
     deliveryTime: "40-50 min",
     deliveryFee: 180,
     featured: true,
-    tags: ["Árabe", "Gourmet", "Especias"]
+    tags: ["Árabe", "Gourmet", "Especias"],
+    address: "Pocitos, Juan Benito Blanco 1890, Montevideo",
+    phone: "+598 2711 5566",
+    email: "reservas@arabiannights.com.uy"
   },
   {
     id: 20,
@@ -45,7 +54,10 @@ const halalStores = [
     deliveryTime: "25-35 min",
     deliveryFee: 0,
     featured: false,
-    tags: ["Burgers", "Fast food", "Casual"]
+    tags: ["Burgers", "Fast food", "Casual"],
+    address: "Cordón, Río Negro 1445, Montevideo",
+    phone: "+598 2901 7722",
+    email: "contacto@halalburger.com.uy"
   }
 ];
 
