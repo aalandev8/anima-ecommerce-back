@@ -5,7 +5,12 @@ const sequelize = require("./database.js");
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  }),
+);
 
 // Importar rutas de los modelos
 const routes = require("./routes"); // Rutas generales para otros modelos
