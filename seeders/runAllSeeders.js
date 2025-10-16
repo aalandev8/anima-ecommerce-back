@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { sequelize } = require("./models"); // Ajustá la ruta si tu carpeta de modelos está en otro lugar
+const { sequelize } = require("../models"); // Ajustá la ruta si tu carpeta de modelos está en otro lugar
 const path = require("path");
 const fs = require("fs");
 

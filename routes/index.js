@@ -14,4 +14,5 @@ module.exports = (app) => {
   app.use("/api/order", orderRoutes);
   app.use("/api/categories", categoryRoutes);
   app.use("/api/products", productRoutes);
+  app.use("/api/stores", storeRoutes); // Rutas para Store
 };

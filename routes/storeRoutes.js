@@ -1,7 +1,7 @@
 // routes/stores.js
 const express = require('express');
 const router = express.Router();
-const { Store, User } = require('./models'); // Ajusta la ruta según tu estructura
+const { Store, User } = require('../models'); // Ajusta la ruta según tu estructura
 
 // GET /api/tiendas - Obtener todas las tiendas o filtrar por categoría
 router.get('/tiendas', async (req, res) => {
