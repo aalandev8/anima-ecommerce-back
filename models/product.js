@@ -19,8 +19,6 @@ class Product extends Model {
             key: "id",
           },
         },
-<<<<<<< Updated upstream
-=======
         store_id: {
           type: DataTypes.INTEGER.UNSIGNED,
           allowNull: true,
@@ -29,7 +27,6 @@ class Product extends Model {
             key: "id",
           },
         },
->>>>>>> Stashed changes
       },
       {
         sequelize,
