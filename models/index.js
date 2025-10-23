@@ -31,6 +31,16 @@ Product.belongsTo(Store, {
   as: "store",
 });
 
+User.hasOne(Store, {
+  foreignKey: "admin_id",
+  as: "store",
+});
+
+Store.belongsTo(User, {
+  foreignKey: "admin_id",
+  as: "admin",
+});
+
 module.exports = {
   sequelize,
   Category,
