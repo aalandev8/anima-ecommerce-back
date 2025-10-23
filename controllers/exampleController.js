@@ -9,6 +9,11 @@ const exampleController = {
 
   store: (req, res) => {
     if (!req.body.name) {
+      return res.status(400).json({
+        success: false,
+        message: "Name is required",
+      });
+    }
     res.status(201).json({
       success: true,
       message: "Example created",
@@ -18,10 +23,6 @@ const exampleController = {
 
   show: (req, res) => {
     const { id } = req.params;
-    res.json({
-      message: `Example endpoint - show example with id ${id}`,
-      id: id
-
     res.status(200).json({
       success: true,
       message: `Show example with id ${id}`,

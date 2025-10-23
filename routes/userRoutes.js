@@ -1,7 +1,7 @@
 const express = require("express");
-const { authenticateToken, requireAdmin } = require("../middlewares/authMiddleware");
-const userController = require("../controllers/userController");
+const router = express.Router();
 const { authenticateToken, requireAdmin } = require("../middlewares/auth");
+const userController = require("../controllers/userController");
 
 /*
  * API endpoints relacionados a los usuarios.

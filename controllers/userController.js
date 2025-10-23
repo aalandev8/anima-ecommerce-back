@@ -85,38 +85,17 @@ const userController = {
         return sendResponse(res, 403, false, "Sin permisos para ver estos datos");
       }
 
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(id, {
+        attributes: { exclude: ["password"] },
+      });
+
       if (!user) {
         return sendResponse(res, 404, false, "Usuario no encontrado");
       }
 
-      const validPassword = await bcrypt.compare(password, user.password);
-      if (!validPassword) {
-        return sendResponse(res, 401, false, "Credenciales inválidas");
-      }
-
-      const token = generateToken(user);
-
-      const userInfo = {
-        id: user.id,
-        email: user.email,
-        role: user.role,
-      };
-
-      return sendResponse(res, 200, true, "Login exitoso", { user: userInfo, token });
-    } catch (error) {
-      return sendResponse(res, 500, false, "Error interno del servidor", error.message);
-    }
-  },
-
-  getUser: async (req, res) => {
-    try {
-      const user = await User.findByPk(req.params.id, { attributes: { exclude: ["password"] } });
-      if (!user) {
-        return sendResponse(res, 404, false, "Usuario no encontrado");
-      }
       return sendResponse(res, 200, true, "Usuario obtenido correctamente", user);
     } catch (error) {
+      console.error("Error al obtener usuario:", error);
       return sendResponse(res, 500, false, "Error interno del servidor", error.message);
     }
   },
