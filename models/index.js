@@ -3,20 +3,24 @@ const sequelize = require("../database.js");
 const Category = require("./category");
 const Product = require("./product");
 const User = require("./User");
-const Store = require("./store");
 
 Category.initModel(sequelize);
 Product.initModel(sequelize);
 User.initModel(sequelize);
-Store.initModel(sequelize);
 
-const models = { Category, Product, User, Store };
+Category.hasMany(Product, {
+  foreignKey: "category_id",
+  as: "products",
+});
 
-Object.values(models).forEach((model) => {
-  if (model.associate) model.associate(models);
+Product.belongsTo(Category, {
+  foreignKey: "category_id",
+  as: "category",
 });
 
 module.exports = {
   sequelize,
-  ...models,
+  Category,
+  Product,
+  User,
 };

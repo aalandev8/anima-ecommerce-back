@@ -1,15 +1,18 @@
 const exampleController = {
   index: (req, res) => {
-    res.json({
-      message: "Example endpoint - list all examples",
-      examples: []
+    res.status(200).json({
+      success: true,
+      message: "List of examples",
+      data: [],
     });
   },
 
   store: (req, res) => {
-    res.json({
-      message: "Example endpoint - create new example",
-      data: req.body
+    if (!req.body.name) {
+    res.status(201).json({
+      success: true,
+      message: "Example created",
+      data: req.body,
     });
   },
 
@@ -18,25 +21,31 @@ const exampleController = {
     res.json({
       message: `Example endpoint - show example with id ${id}`,
       id: id
+
+    res.status(200).json({
+      success: true,
+      message: `Show example with id ${id}`,
+      data: { id },
     });
   },
 
   update: (req, res) => {
     const { id } = req.params;
-    res.json({
-      message: `Example endpoint - update example with id ${id}`,
-      id: id,
-      data: req.body
+    res.status(200).json({
+      success: true,
+      message: `Update example with id ${id}`,
+      data: req.body,
     });
   },
 
   destroy: (req, res) => {
     const { id } = req.params;
-    res.json({
-      message: `Example endpoint - delete example with id ${id}`,
-      id: id
+    res.status(200).json({
+      success: true,
+      message: `Deleted example with id ${id}`,
+      data: { id },
     });
-  }
+  },
 };
 
 module.exports = exampleController;

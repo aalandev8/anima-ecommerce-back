@@ -6,18 +6,10 @@ class User extends Model {
       {
         id: { type: DataTypes.INTEGER.UNSIGNED, autoIncrement: true, primaryKey: true },
         name: { type: DataTypes.STRING(100), allowNull: false },
-        email: {
-          type: DataTypes.STRING(150),
-          allowNull: false,
-          unique: true,
-          validate: { isEmail: true },
-        },
-        password: { type: DataTypes.STRING(255), allowNull: false },
-        role: {
-          type: DataTypes.ENUM("admin", "client"),
-          allowNull: false,
-          defaultValue: "client",
-        },
+        email: { type: DataTypes.STRING(150), allowNull: false, unique: true },
+        password: { type: DataTypes.STRING(200), allowNull: false },
+        phone: { type: DataTypes.STRING(20) },
+        address: { type: DataTypes.TEXT },
       },
       {
         sequelize,

@@ -1,4 +1,5 @@
 const { DataTypes, Model } = require("sequelize");
+const { all } = require("../server");
 
 class Product extends Model {
   static initModel(sequelize) {
@@ -20,7 +21,7 @@ class Product extends Model {
         },
         store_id: {
           type: DataTypes.INTEGER.UNSIGNED,
-          allowNull: false,
+          allowNull: true,
           references: {
             model: "stores",
             key: "id",

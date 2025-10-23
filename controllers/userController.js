@@ -1,6 +1,6 @@
-const { sendResponse, generateToken } = require("../middlewares/authMiddleware");
 const bcrypt = require("bcrypt");
 const { User } = require("../models");
+const { sendResponse, generateToken } = require("../middlewares/auth");
 
 const userController = {
   // Función de prueba
@@ -90,16 +90,34 @@ const userController = {
         return sendResponse(res, 404, false, "Usuario no encontrado");
       }
 
-      return sendResponse(res, 200, true, "Usuario encontrado", {
+      const validPassword = await bcrypt.compare(password, user.password);
+      if (!validPassword) {
+        return sendResponse(res, 401, false, "Credenciales inválidas");
+      }
+
+      const token = generateToken(user);
+
+      const userInfo = {
         id: user.id,
-        nombre: user.nombre,
-        apellido: user.apellido,
         email: user.email,
         role: user.role,
-      });
+      };
+
+      return sendResponse(res, 200, true, "Login exitoso", { user: userInfo, token });
     } catch (error) {
-      console.error("Error al obtener usuario:", error);
-      return sendResponse(res, 500, false, "Error interno del servidor");
+      return sendResponse(res, 500, false, "Error interno del servidor", error.message);
+    }
+  },
+
+  getUser: async (req, res) => {
+    try {
+      const user = await User.findByPk(req.params.id, { attributes: { exclude: ["password"] } });
+      if (!user) {
+        return sendResponse(res, 404, false, "Usuario no encontrado");
+      }
+      return sendResponse(res, 200, true, "Usuario obtenido correctamente", user);
+    } catch (error) {
+      return sendResponse(res, 500, false, "Error interno del servidor", error.message);
     }
   },
 

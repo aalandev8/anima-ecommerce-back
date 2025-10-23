@@ -4,11 +4,12 @@
  */
 
 const userRoutes = require("./userRoutes");
-
+const articleRoutes = require("./articleRoutes");
 const categoryRoutes = require("./categoryRoutes");
 const productRoutes = require("./productRoutes");
 const orderRoutes = require("./orderRoutes");
 const authRoutes = require("./authRoutes");
+const exampleRoutes = require("./exampleRoutes");
 
 module.exports = (app) => {
   /*
@@ -22,12 +23,22 @@ module.exports = (app) => {
    * se deberían agrupar bajo la URL `/articles` (en inglés y en plural).
    */
 
+  app.get("/", (req, res) => res.send("Hola!"));
+
+  app.use("/users", userRoutes);
+  app.use("/articles", articleRoutes);
+  app.use("/examples", exampleRoutes);
+
   // Rutas de autenticación
   app.use("/api/auth", authRoutes);
 
   // Rutas de recursos
   app.use("/api/users", userRoutes);
-  app.use("/api/order", orderRoutes);
+  app.use("/api/articles", articleRoutes);
+  app.use("/api/orders", orderRoutes);
   app.use("/api/categories", categoryRoutes);
   app.use("/api/products", productRoutes);
+
+  // Rutas de ejemplo
+  app.use("/api/examples", exampleRoutes);
 };

@@ -1,42 +1,64 @@
 const bcrypt = require("bcrypt");
-const { User } = require("../models");
-const { generateToken, sendResponse } = require("../middlewares/authMiddleware");
+const jwt = require("jsonwebtoken");
+
+let usuarios = [];
 
 async function register(req, res) {
   try {
-    const { name, email, password, role } = req.body;
-    const existing = await User.findOne({ where: { email } });
-    if (existing) return sendResponse(res, 400, false, "El email ya está registrado");
+    const { email, password, role } = req.body;
 
-    const hashed = await bcrypt.hash(password, 10);
-    const user = await User.create({ name, email, password: hashed, role: role || "client" });
+    if (!email || !password) {
+      return res.status(400).json({ message: "Faltan datos requeridos" });
+    }
 
-    return sendResponse(res, 201, true, "Usuario registrado correctamente", {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
+    if (usuarios.some((u) => u.email === email)) {
+      return res.status(400).json({ message: "El correo ya está registrado" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const nuevoUsuario = {
+      id: usuarios.length + 1,
+      email,
+      password: hashedPassword,
+      role: role || "user",
+    };
+
+    usuarios.push(nuevoUsuario);
+
+    res.status(201).json({
+      message: "Usuario registrado correctamente",
+      usuario: { id: nuevoUsuario.id, email: nuevoUsuario.email, role: nuevoUsuario.role },
     });
-  } catch (err) {
-    console.error(err);
-    return sendResponse(res, 500, false, "Error al registrar usuario");
+  } catch (error) {
+    res.status(500).json({ message: "Error en el registro", error: error.message });
   }
 }
 
 async function login(req, res) {
   try {
     const { email, password } = req.body;
-    const user = await User.findOne({ where: { email } });
-    if (!user) return sendResponse(res, 400, false, "Usuario no encontrado");
 
-    const valid = await bcrypt.compare(password, user.password);
-    if (!valid) return sendResponse(res, 401, false, "Credenciales inválidas");
+    if (!email || !password) {
+      return res.status(400).json({ message: "Faltan datos requeridos" });
+    }
 
-    const token = generateToken(user);
-    return sendResponse(res, 200, true, "Login exitoso", { token, role: user.role });
-  } catch (err) {
-    console.error(err);
-    return sendResponse(res, 500, false, "Error al iniciar sesión");
+    const usuario = usuarios.find((u) => u.email === email);
+    if (!usuario) return res.status(400).json({ message: "Usuario no encontrado" });
+
+    const esValido = await bcrypt.compare(password, usuario.password);
+    if (!esValido) return res.status(401).json({ message: "Credenciales inválidas" });
+
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ message: "Error interno: falta JWT_SECRET" });
+    }
+
+    const token = jwt.sign({ id: usuario.id, role: usuario.role }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
+    res.status(200).json({ message: "Login exitoso", token: `Bearer ${token}` });
+  } catch (error) {
+    res.status(500).json({ message: "Error al iniciar sesión", error: error.message });
   }
 }
 
