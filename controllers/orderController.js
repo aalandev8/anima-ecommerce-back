@@ -31,13 +31,24 @@ const orderController = {
       const order = await Order.findByPk(id);
 
       if (!order) {
-        return res.status(404).json({ error: "Orden no encontrada" });
+        return res.status(404).json({
+          success: false,
+          message: "Orden no encontrada",
+        });
       }
 
-      res.json(order);
+      res.status(200).json({
+        success: true,
+        data: order,
+        message: "Orden obtenida correctamente",
+      });
     } catch (error) {
       console.error("Error al obtener orden:", error);
-      res.status(500).json({ error: "No se pudo obtener la orden" });
+      res.status(500).json({
+        success: false,
+        message: "No se pudo obtener la orden",
+        error: error.message,
+      });
     }
   },
 

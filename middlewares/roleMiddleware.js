@@ -1,8 +1,8 @@
-function adminMiddleware(req, res, next) {
+function adminMiddlewares(req, res, next) {
   if (req.user.role !== "admin") {
     return res.status(403).json({ message: "Solo admins" });
   }
   next();
 }
 
-module.exports = adminMiddleware;
+module.exports = adminMiddlewares;

@@ -21,12 +21,14 @@ const store = async (req, res) => {
   try {
     const { title, content, author, category_id } = req.body;
 
-    const article = await Article.create({
-      title,
-      content,
-      author,
-      category_id,
-    });
+    if (!title || !content || !author) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields",
+      });
+    }
+
+    const article = await Article.create({ title, content, author, category_id });
 
     res.status(201).json({
       success: true,
@@ -83,10 +85,10 @@ const update = async (req, res) => {
     }
 
     await article.update({
-      title: title || article.title,
-      content: content || article.content,
-      author: author || article.author,
-      category_id: category_id || article.category_id,
+      title: title ?? article.title,
+      content: content ?? article.content,
+      author: author ?? article.author,
+      category_id: category_id ?? article.category_id,
     });
 
     res.status(200).json({
@@ -130,10 +132,4 @@ const destroy = async (req, res) => {
   }
 };
 
-module.exports = {
-  index,
-  store,
-  show,
-  update,
-  destroy,
-};
+module.exports = { index, store, show, update, destroy };

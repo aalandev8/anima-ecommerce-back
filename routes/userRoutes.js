@@ -1,32 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
+const { authenticateToken, requireAdmin } = require("../middlewares/auth");
 
 /*
  * API endpoints relacionados a los usuarios.
- *
- * Notar que todos estos endpoints tienen como prefijo el string "/users",
- * tal como se definió en el archivo `routes/index.js`.
+ * Todos estos endpoints tienen como prefijo "/users",
+ * tal como se definió en `routes/index.js`.
  */
 
-// routes/userRoutes.js
-
-const express = require("express");
-
-const { authenticateToken, requireAdmin } = require("../middlewares/auth");
-
-const userController = require("../controllers/userController");
-
+// Ruta de prueba (opcional)
 router.get("/test", userController.test);
 
+// Registro y login
 router.post("/register", userController.register);
-
 router.post("/login", userController.login);
 
-router.get("/:id", userController.getUser);
-
-router.put("/:id", userController.updateUser);
-
-router.delete("/:id", userController.deleteUser);
+// Obtener, actualizar y eliminar usuario
+router.get("/:id", authenticateToken, userController.getUser);
+router.put("/:id", authenticateToken, userController.updateUser);
+router.delete("/:id", authenticateToken, requireAdmin, userController.deleteUser);
 
 module.exports = router;

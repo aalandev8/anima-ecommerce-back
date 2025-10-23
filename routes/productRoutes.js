@@ -6,13 +6,14 @@ const {
   validateProductUpdate,
   validateId,
   validateCategoryId,
-} = require("../middleware/validation");
+} = require("../middlewares/validation");
 
+// Rutas RESTful para productos
 router.get("/", productController.getAllProducts);
 router.get("/category/:categoryId", validateCategoryId, productController.getProductsByCategory);
 router.get("/:id", validateId, productController.getProductById);
 router.post("/", validateProduct, productController.createProduct);
-router.put("/:id", validateId, productController.updateProduct);
+router.put("/:id", validateId, validateProductUpdate, productController.updateProduct);
 router.delete("/:id", validateId, productController.deleteProduct);
 
 module.exports = router;

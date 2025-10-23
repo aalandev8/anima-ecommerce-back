@@ -1,20 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const ordersController = require("../controllers/orderController");
+const orderController = require("../controllers/orderController"); // 🔧 corregido
 
-// crea la orden
+// Crea una orden
 router.post("/", orderController.createOrder);
 
-// obtiene todas las órdenes
+// Obtiene todas las órdenes
 router.get("/", orderController.getAllOrders);
 
-// me da  una orden por ID
+// Obtiene una orden por ID
 router.get("/:id", orderController.getOrderById);
 
-// actualiza una orden
+// Actualiza una orden
 router.put("/:id", orderController.updateOrder);
 
-// elimina una orden
+// Elimina una orden
 router.delete("/:id", orderController.deleteOrder);
 
 module.exports = router;
