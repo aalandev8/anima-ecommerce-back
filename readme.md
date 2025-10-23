@@ -15,18 +15,26 @@ A complete REST API for a pastry e-commerce platform built with Node.js, Express
    # Edit .env with your database configuration
    ```
 
-3. **Run database seeders:**
+3. **Run complete setup (recommended for first time):**
    ```bash
-   npm run seeders
-   # or
-   node seeders/runAllSeeders.js
+   npm run setup
+   ```
+   This will:
+   - ✅ Verify database connection
+   - ✅ Create all database tables
+   - ✅ Insert test data (seeders)
+
+   **Alternative (manual setup):**
+   ```bash
+   npm run tables    # Create database tables
+   npm run seeders   # Insert test data
    ```
 
 4. **Start the server:**
    ```bash
-   npm start
+   npm run dev       # Development mode (with nodemon)
    # or
-   node server.js
+   npm start         # Production mode
    ```
 
 5. **Server runs on:** `http://localhost:3000`
@@ -36,10 +44,17 @@ A complete REST API for a pastry e-commerce platform built with Node.js, Express
 ## 📊 Database Schema
 
 The API includes the following models:
-- **Users** (100 seeded records)
+- **Users** (100 seeded records: 3 admins + 97 clients)
+- **Stores** (20 specialty stores across 5 dietary categories)
 - **Categories** (8 pastry categories)
 - **Products** (22+ pastry products)
 - **Orders** (8 sample orders with JSON items)
+- **Articles** (Blog/news articles)
+
+### **Key Relationships:**
+- Users → Stores (One-to-One: admin_id)
+- Stores → Products (One-to-Many: store_id)
+- Categories → Products (One-to-Many: category_id)
 
 ---
 
@@ -79,7 +94,40 @@ The API includes the following models:
 
 ---
 
-## 🧁 **2. PRODUCTS** (`/api/products`)
+## 🏪 **2. STORES** (`/api/stores`)
+
+| Method | Endpoint | Description | Validation |
+|--------|----------|-------------|------------|
+| `GET` | `/api/stores` | Get all stores | - |
+| `GET` | `/api/stores/:id` | Get store by ID | Valid ID required |
+| `POST` | `/api/stores` | Create new store | `name`, `address`, `admin_id` required |
+| `PUT` | `/api/stores/:id` | Update store | Valid ID required |
+| `DELETE` | `/api/stores/:id` | Delete store | Valid ID required |
+
+**Sample POST/PUT Body:**
+```json
+{
+  "name": "Pastelería Kosher Delights",
+  "description": "Authentic kosher pastries and desserts",
+  "address": "123 Main Street, Madrid",
+  "phone": "+34 123 456 789",
+  "email": "info@kosherdelights.com",
+  "type": "kosher",
+  "admin_id": 1,
+  "image_url": "https://example.com/store.jpg"
+}
+```
+
+**Store Types (Dietary Categories):**
+- `kosher` - Kosher certified products
+- `diabetic` - Sugar-free and diabetic-friendly
+- `gluten-free` - Gluten-free products
+- `vegan` - Plant-based products
+- `halal` - Halal certified products
+
+---
+
+## 🧁 **3. PRODUCTS** (`/api/products`)
 
 | Method | Endpoint | Description | Validation |
 |--------|----------|-------------|------------|
@@ -111,7 +159,7 @@ The API includes the following models:
 
 ---
 
-## 👥 **3. USERS** (`/api/users`)
+## 👥 **4. USERS** (`/api/users`)
 
 | Method | Endpoint | Description | Validation |
 |--------|----------|-------------|------------|
@@ -140,7 +188,7 @@ The API includes the following models:
 
 ---
 
-## 📦 **4. ORDERS** (`/api/orders`)
+## 📦 **5. ORDERS** (`/api/orders`)
 
 | Method | Endpoint | Description | Validation |
 |--------|----------|-------------|------------|
@@ -181,7 +229,7 @@ The API includes the following models:
 
 ---
 
-## 📰 **5. ARTICLES** (`/api/articles`)
+## 📰 **6. ARTICLES** (`/api/articles`)
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -193,7 +241,7 @@ The API includes the following models:
 
 ---
 
-## 🔐 **6. AUTHENTICATION** (`/api/auth`)
+## 🔐 **7. AUTHENTICATION** (`/api/auth`)
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -213,7 +261,7 @@ The API includes the following models:
 
 ---
 
-## 🧪 **7. EXAMPLES** (`/api/examples`)
+## 🧪 **8. EXAMPLES** (`/api/examples`)
 
 Template endpoints for development reference:
 
@@ -227,7 +275,7 @@ Template endpoints for development reference:
 
 ---
 
-## 🏠 **8. HOME**
+## 🏠 **9. HOME**
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
@@ -289,10 +337,12 @@ npm run seeders
 ```
 
 **What gets seeded:**
-- ✅ **100 Users** - Realistic Spanish names and data
+- ✅ **20 Stores** - Specialty stores (4 per dietary category: kosher, diabetic, gluten-free, vegan, halal)
+- ✅ **100 Users** - 3 admin users + 97 regular clients with realistic Spanish names
 - ✅ **8 Categories** - Pastry shop categories
 - ✅ **22+ Products** - Delicious pastry items with prices
 - ✅ **8 Orders** - Sample orders with multiple items
+- ✅ **Articles** - Blog/news articles
 
 ---
 
@@ -324,9 +374,48 @@ APP_PORT=3000
 ```
 
 ### **Scripts:**
-- `npm start` - Start server
-- `npm run dev` - Start with nodemon
-- `npm run seeders` - Run database seeders
+- `npm run setup` - Complete initial setup (creates tables + seeders)
+- `npm run tables` - Create/recreate database tables
+- `npm run seeders` - Insert test data into database
+- `npm start` - Start server in production mode
+- `npm run dev` - Start server with nodemon (development)
+- `npm test` - Run tests
+
+---
+
+## 🔧 **Troubleshooting**
+
+### **Error: EADDRINUSE (port already in use)**
+If you see this error, another process is using port 3000:
+```bash
+# Find and kill the process using port 3000
+lsof -ti:3000 | xargs kill -9
+# Or change the port in your .env file
+APP_PORT=3001
+```
+
+### **Error: Cannot connect to database**
+Verify:
+1. MySQL server is running
+2. Database exists (create it if needed):
+   ```sql
+   CREATE DATABASE pastry_ecommerce;
+   ```
+3. `.env` file has correct credentials
+4. User has proper permissions
+
+### **Error: Unknown column in 'field list'**
+Database schema is out of sync. Run:
+```bash
+npm run tables
+npm run seeders
+```
+
+### **Seeders fail with foreign key errors**
+Run the complete setup to recreate everything:
+```bash
+npm run setup
+```
 
 ---
 

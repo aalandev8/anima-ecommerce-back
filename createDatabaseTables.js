@@ -18,9 +18,35 @@ require("dotenv").config();
 const db = require("./models");
 
 async function createDatabaseTables() {
-  await db.sequelize.sync({ force: true });
-  console.log("[Database] ¡Las tablas fueron creadas!");
-  process.exit();
+  try {
+    console.log("[Database] Conectando a la base de datos...");
+    await db.sequelize.authenticate();
+    console.log("[Database] Conexión exitosa ✅\n");
+
+    // Desactivar temporalmente las comprobaciones de claves foráneas
+    console.log("[Database] Desactivando restricciones de claves foráneas...");
+    await db.sequelize.query("SET FOREIGN_KEY_CHECKS = 0");
+
+    // Eliminar todas las tablas existentes
+    console.log("[Database] Eliminando tablas existentes...");
+    await db.sequelize.drop();
+
+    // Reactivar las comprobaciones de claves foráneas
+    console.log("[Database] Reactivando restricciones de claves foráneas...");
+    await db.sequelize.query("SET FOREIGN_KEY_CHECKS = 1");
+
+    // Crear las tablas nuevamente
+    console.log("[Database] Creando nuevas tablas...");
+    await db.sequelize.sync({ force: false });
+
+    console.log("\n[Database] ✅ ¡Las tablas fueron creadas exitosamente!");
+  } catch (error) {
+    console.error("\n[Database] ❌ Error creando tablas:", error);
+    process.exit(1);
+  } finally {
+    await db.sequelize.close();
+    process.exit(0);
+  }
 }
 
 createDatabaseTables();

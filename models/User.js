@@ -10,6 +10,11 @@ class User extends Model {
         password: { type: DataTypes.STRING(200), allowNull: false },
         phone: { type: DataTypes.STRING(20) },
         address: { type: DataTypes.TEXT },
+        role: {
+          type: DataTypes.ENUM("admin", "client"),
+          allowNull: false,
+          defaultValue: "client"
+        },
       },
       {
         sequelize,

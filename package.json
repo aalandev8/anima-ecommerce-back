@@ -8,7 +8,8 @@
     "dev": "nodemon server.js",
     "test": "jest",
     "tables": "node createDatabaseTables.js",
-    "seeders": "node seeders/runAllSeeders.js"
+    "seeders": "node seeders/runAllSeeders.js",
+    "setup": "node setup.js"
   },
   "keywords": [],
   "author": "Hack Academy",
