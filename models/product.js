@@ -41,7 +41,12 @@ class Product extends Model {
       foreignKey: "category_id",
       as: "category",
     });
-  }
-}
 
+
+  Product.belongsTo(models.Store, {
+    foreignKey: "store_id",
+    as: "store",
+  });
+}
+  }
 module.exports = Product;

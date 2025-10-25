@@ -13,12 +13,29 @@
  */
 
 require("dotenv").config();
-const { sequelize } = require("./models");
+const path = require("path");
 const { execSync } = require("child_process");
+const { sequelize } = require("./models");
+
+// Importar seeders
+const categorySeeder = require("./seeders/categorySeeder");
+const storeSeeder = require("./seeders/storeSeeder");
+const userSeeder = require("./seeders/userSeeder");
+const productSeeder = require("./seeders/productSeeder");
+
+async function runSeeder(seeder, name) {
+  if (typeof seeder === 'function') {
+    await seeder();
+  } else if (seeder && typeof seeder.up === 'function') {
+    await seeder.up();
+  } else {
+    throw new Error(`El seeder ${name} no exporta una función válida`);
+  }
+}
 
 async function setup() {
   console.log("\n🚀 Iniciando configuración del proyecto...\n");
-  console.log("=" .repeat(60));
+  console.log("=".repeat(60));
 
   try {
     // Paso 1: Verificar conexión a la base de datos
@@ -26,23 +43,32 @@ async function setup() {
     await sequelize.authenticate();
     console.log("✅ Conexión exitosa a la base de datos");
 
-    // Cerrar conexión antes de ejecutar scripts externos
-    await sequelize.close();
-
     // Paso 2: Crear tablas
     console.log("\n[2/3] Creando tablas de la base de datos...");
-    execSync("npm run tables", { stdio: "inherit" });
+    await sequelize.sync({ force: true });
+    console.log("✅ Tablas creadas correctamente");
 
     // Paso 3: Insertar datos de prueba
     console.log("\n[3/3] Insertando datos de prueba (seeders)...");
-    execSync("npm run seeders", { stdio: "inherit" });
 
-    console.log("\n" + "=" .repeat(60));
+    // Ejecutar seeders en orden
+    await runSeeder(categorySeeder, 'Category');
+    console.log("✅ Categorías creadas");
+
+    await runSeeder(storeSeeder, 'Store');
+    console.log("✅ Tiendas creadas");
+
+    await runSeeder(userSeeder, 'User');
+    console.log("✅ Usuarios creados");
+
+    await runSeeder(productSeeder, 'Product');
+    console.log("✅ Productos creados");
+
+    console.log("\n" + "=".repeat(60));
     console.log("\n✅ ¡Configuración completada exitosamente!\n");
     console.log("Para iniciar el servidor, ejecuta:");
     console.log("  👉 npm run dev (modo desarrollo)");
     console.log("  👉 npm start (modo producción)\n");
-
   } catch (error) {
     console.error("\n❌ Error durante la configuración:", error.message);
     console.log("\nVerifica que:");

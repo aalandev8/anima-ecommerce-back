@@ -6,6 +6,7 @@ module.exports = async () => {
   try {
     await Product.destroy({ where: {} });
     console.log("🗑️  Existing products cleared");
+    
     const categories = await Category.findAll();
     const categoryMap = {};
     categories.forEach(cat => {
@@ -13,206 +14,248 @@ module.exports = async () => {
     });
 
     const products = [
+      // KOSHER STORES (1-4)
+      // Kosher Delight (ID: 1) - Carne y Parrilla
       {
-        name: "Pastel de Chocolate Supremo",
-        description: "Exquisito pastel de chocolate de 3 capas con ganache de chocolate belga y decoración de fresas frescas",
+        name: "Parrillada Kosher Premium",
+        description: "Selección de carnes kosher certificadas a la parrilla",
+        price: 55.99,
+        stock: 15,
+        category_id: categoryMap["Pasteles"],
+        store_id: 1,
+        image_url: "https://example.com/images/parrillada-kosher.jpg"
+      },
+      {
+        name: "Asado de Tira Kosher",
+        description: "Asado de tira kosher certificado, jugoso y tierno",
+        price: 42.00,
+        stock: 20,
+        category_id: categoryMap["Pasteles"],
+        store_id: 1,
+        image_url: "https://example.com/images/asado-kosher.jpg"
+      },
+
+      // Jerusalem Flavors (ID: 2) - Israelí/Mediterráneo
+      {
+        name: "Falafel Plate",
+        description: "Plato de falafel con hummus, tahini y ensalada fresca",
+        price: 28.50,
+        stock: 30,
+        category_id: categoryMap["Cupcakes"],
+        store_id: 2,
+        image_url: "https://example.com/images/falafel-plate.jpg"
+      },
+      {
+        name: "Shawarma de Pollo",
+        description: "Shawarma de pollo kosher con vegetales y salsas",
+        price: 32.00,
+        stock: 25,
+        category_id: categoryMap["Cupcakes"],
+        store_id: 2,
+        image_url: "https://example.com/images/shawarma.jpg"
+      },
+
+      // Shabbat Kitchen (ID: 3) - Panadería/Tradicional
+      {
+        name: "Jalá Tradicional",
+        description: "Pan trenzado kosher para Shabbat, horneado fresco",
+        price: 18.99,
+        stock: 40,
+        category_id: categoryMap["Panes"],
+        store_id: 3,
+        image_url: "https://example.com/images/jala.jpg"
+      },
+      {
+        name: "Rugelach de Chocolate",
+        description: "Pastelitos tradicionales judíos rellenos de chocolate",
+        price: 22.50,
+        stock: 35,
+        category_id: categoryMap["Galletas"],
+        store_id: 3,
+        image_url: "https://example.com/images/rugelach.jpg"
+      },
+
+      // Kosher Sushi Bar (ID: 4) - Sushi
+      {
+        name: "Sushi Roll Salmón",
+        description: "Roll de salmón fresco certificado kosher con aguacate",
+        price: 38.00,
+        stock: 20,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: 4,
+        image_url: "https://example.com/images/sushi-salmon.jpg"
+      },
+      {
+        name: "Sashimi Mixto",
+        description: "Selección de pescados frescos kosher en sashimi",
         price: 45.99,
         stock: 15,
-        category_id: categoryMap["Pasteles"],
-        image_url: "https://example.com/images/pastel-chocolate-supremo.jpg"
-      },
-      {
-        name: "Pastel de Vainilla Clásico",
-        description: "Tradicional pastel de vainilla con crema de mantequilla y decoración elegante",
-        price: 38.50,
-        stock: 20,
-        category_id: categoryMap["Pasteles"],
-        image_url: "https://example.com/images/pastel-vainilla-clasico.jpg"
-      },
-      {
-        name: "Pastel Red Velvet",
-        description: "Pastel terciopelo rojo con queso crema y un toque de cacao",
-        price: 42.00,
-        stock: 12,
-        category_id: categoryMap["Pasteles"],
-        image_url: "https://example.com/images/pastel-red-velvet.jpg"
-      },
-      {
-        name: "Cupcakes de Chocolate (6 unidades)",
-        description: "Set de 6 cupcakes de chocolate con frosting de vainilla y decoración colorida",
-        price: 18.99,
-        stock: 30,
-        category_id: categoryMap["Cupcakes"],
-        image_url: "https://example.com/images/cupcakes-chocolate.jpg"
-      },
-      {
-        name: "Cupcakes de Limón (12 unidades)",
-        description: "Docena de cupcakes de limón con glaseado de limón y ralladura fresca",
-        price: 35.00,
-        stock: 25,
-        category_id: categoryMap["Cupcakes"],
-        image_url: "https://example.com/images/cupcakes-limon.jpg"
-      },
-      {
-        name: "Cupcakes Red Velvet (6 unidades)",
-        description: "6 cupcakes red velvet con cream cheese frosting y decoración especial",
-        price: 22.50,
-        stock: 28,
-        category_id: categoryMap["Cupcakes"],
-        image_url: "https://example.com/images/cupcakes-red-velvet.jpg"
-      },
-      {
-        name: "Galletas de Chocolate Chip (12 unidades)",
-        description: "Docena de galletas caseras con chips de chocolate premium",
-        price: 12.99,
-        stock: 50,
-        category_id: categoryMap["Galletas"],
-        image_url: "https://example.com/images/galletas-chocolate-chip.jpg"
-      },
-      {
-        name: "Galletas de Avena y Pasas (8 unidades)",
-        description: "8 galletas saludables de avena con pasas y un toque de canela",
-        price: 10.50,
-        stock: 40,
-        category_id: categoryMap["Galletas"],
-        image_url: "https://example.com/images/galletas-avena-pasas.jpg"
-      },
-      {
-        name: "Galletas Decoradas Temáticas (6 unidades)",
-        description: "6 galletas artesanalmente decoradas con glaseado real para ocasiones especiales",
-        price: 24.00,
-        stock: 20,
-        category_id: categoryMap["Galletas"],
-        image_url: "https://example.com/images/galletas-decoradas.jpg"
-      },
-      {
-        name: "Pan Artesanal Integral",
-        description: "Pan integral horneado diariamente con semillas y granos enteros",
-        price: 8.50,
-        stock: 35,
-        category_id: categoryMap["Panes"],
-        image_url: "https://example.com/images/pan-integral.jpg"
-      },
-      {
-        name: "Pan de Centeno",
-        description: "Pan tradicional de centeno con corteza crujiente y miga suave",
-        price: 9.00,
-        stock: 30,
-        category_id: categoryMap["Panes"],
-        image_url: "https://example.com/images/pan-centeno.jpg"
-      },
-      {
-        name: "Pan Brioche",
-        description: "Esponjoso pan brioche francés, perfecto para desayunos especiales",
-        price: 12.99,
-        stock: 25,
-        category_id: categoryMap["Panes"],
-        image_url: "https://example.com/images/pan-brioche.jpg"
+        category_id: categoryMap["Postres Especiales"],
+        store_id: 4,
+        image_url: "https://example.com/images/sashimi.jpg"
       },
 
+      // DIABETIC STORES (5-8)
       {
-        name: "Tarta de Frutas del Bosque",
-        description: "Tarta con base de masa quebrada, crema pastelera y frutas frescas del bosque",
-        price: 32.50,
-        stock: 18,
-        category_id: categoryMap["Tartas"],
-        image_url: "https://example.com/images/tarta-frutas-bosque.jpg"
+        name: "Ensalada Power Bowl",
+        description: "Bowl nutritivo con quinoa, vegetales y proteína magra",
+        price: 24.50,
+        stock: 30,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: 5,
+        image_url: "https://example.com/images/power-bowl.jpg"
       },
       {
-        name: "Tarta de Manzana Francesa",
-        description: "Clásica tarta tatin con manzanas caramelizadas y masa crujiente",
+        name: "Pollo Grillado con Vegetales",
+        description: "Pechuga de pollo a la parrilla con vegetales al vapor",
         price: 28.00,
-        stock: 22,
-        category_id: categoryMap["Tartas"],
-        image_url: "https://example.com/images/tarta-manzana-francesa.jpg"
-      },
-      {
-        name: "Tarta de Chocolate y Nueces",
-        description: "Intensa tarta de chocolate negro con nueces caramelizadas",
-        price: 35.99,
-        stock: 15,
-        category_id: categoryMap["Tartas"],
-        image_url: "https://example.com/images/tarta-chocolate-nueces.jpg"
-      },
-
-      // Macarons
-      {
-        name: "Macarons Clásicos (12 unidades)",
-        description: "Docena de macarons en sabores tradicionales: vainilla, chocolate, fresa y pistacho",
-        price: 28.50,
-        stock: 35,
-        category_id: categoryMap["Macarons"],
-        image_url: "https://example.com/images/macarons-clasicos.jpg"
-      },
-      {
-        name: "Macarons Premium (6 unidades)",
-        description: "6 macarons gourmet con rellenos especiales como lavanda, rosa y té matcha",
-        price: 22.00,
         stock: 25,
-        category_id: categoryMap["Macarons"],
-        image_url: "https://example.com/images/macarons-premium.jpg"
+        category_id: categoryMap["Pasteles"],
+        store_id: 6,
+        image_url: "https://example.com/images/pollo-grillado.jpg"
       },
 
-      // Postres Especiales
-      {
-        name: "Tiramisú Individual",
-        description: "Clásico tiramisú italiano con mascarpone, café y cacao en porción individual",
-        price: 8.99,
-        stock: 40,
-        category_id: categoryMap["Postres Especiales"],
-        image_url: "https://example.com/images/tiramisu-individual.jpg"
-      },
-      {
-        name: "Cheesecake de Frutos Rojos",
-        description: "Cremoso cheesecake con base de galleta y coulis de frutos rojos",
-        price: 12.50,
-        stock: 30,
-        category_id: categoryMap["Postres Especiales"],
-        image_url: "https://example.com/images/cheesecake-frutos-rojos.jpg"
-      },
-      {
-        name: "Mousse de Chocolate Belga",
-        description: "Suave mousse de chocolate belga con decoración de chocolate blanco",
-        price: 9.99,
-        stock: 32,
-        category_id: categoryMap["Postres Especiales"],
-        image_url: "https://example.com/images/mousse-chocolate-belga.jpg"
-      },
-
-      // Productos Sin Gluten
+      // GLUTEN-FREE STORES (9-12)
       {
         name: "Brownie Sin Gluten",
-        description: "Delicioso brownie libre de gluten con nueces, sin comprometer el sabor",
-        price: 6.50,
+        description: "Delicioso brownie libre de gluten con nueces",
+        price: 12.50,
         stock: 28,
         category_id: categoryMap["Productos Sin Gluten"],
+        store_id: 9,
         image_url: "https://example.com/images/brownie-sin-gluten.jpg"
       },
       {
-        name: "Muffins Sin Gluten (4 unidades)",
-        description: "4 muffins de arándanos libres de gluten, perfectos para el desayuno",
-        price: 14.99,
-        stock: 24,
-        category_id: categoryMap["Productos Sin Gluten"],
-        image_url: "https://example.com/images/muffins-sin-gluten.jpg"
-      },
-      {
         name: "Pan Sin Gluten Artesanal",
-        description: "Pan artesanal libre de gluten con semillas y granos alternativos",
-        price: 11.50,
+        description: "Pan artesanal libre de gluten con semillas",
+        price: 15.99,
         stock: 20,
         category_id: categoryMap["Productos Sin Gluten"],
+        store_id: 10,
         image_url: "https://example.com/images/pan-sin-gluten.jpg"
+      },
+      {
+        name: "Pizza Sin Gluten Margarita",
+        description: "Pizza con masa sin gluten, salsa de tomate y mozzarella",
+        price: 32.00,
+        stock: 18,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: 11,
+        image_url: "https://example.com/images/pizza-sin-gluten.jpg"
+      },
+
+      // VEGAN STORES (13-16)
+      {
+        name: "Burger Vegana Beyond",
+        description: "Hamburguesa plant-based con queso vegano y vegetales",
+        price: 28.99,
+        stock: 25,
+        category_id: categoryMap["Cupcakes"],
+        store_id: 13,
+        image_url: "https://example.com/images/burger-vegana.jpg"
+      },
+      {
+        name: "Bowl Vegano Mediterráneo",
+        description: "Bowl con falafel, hummus, tabulé y vegetales frescos",
+        price: 26.50,
+        stock: 30,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: 14,
+        image_url: "https://example.com/images/bowl-vegano.jpg"
+      },
+      {
+        name: "Pastel de Chocolate Vegano",
+        description: "Pastel de chocolate 100% vegetal con ganache",
+        price: 35.00,
+        stock: 15,
+        category_id: categoryMap["Pasteles"],
+        store_id: 15,
+        image_url: "https://example.com/images/pastel-chocolate-vegano.jpg"
+      },
+
+      // HALAL STORES (17-20)
+      {
+        name: "Kebab Halal",
+        description: "Kebab de cordero halal con pan árabe y vegetales",
+        price: 32.50,
+        stock: 22,
+        category_id: categoryMap["Cupcakes"],
+        store_id: 17,
+        image_url: "https://example.com/images/kebab-halal.jpg"
+      },
+      {
+        name: "Biryani de Pollo",
+        description: "Arroz basmati con pollo halal especiado al estilo indio",
+        price: 28.00,
+        stock: 25,
+        category_id: categoryMap["Pasteles"],
+        store_id: 18,
+        image_url: "https://example.com/images/biryani.jpg"
+      },
+      {
+        name: "Shawarma Halal Mixto",
+        description: "Mix de carnes halal con salsa tahini y ensalada",
+        price: 30.00,
+        stock: 28,
+        category_id: categoryMap["Cupcakes"],
+        store_id: 19,
+        image_url: "https://example.com/images/shawarma-halal.jpg"
+      },
+      {
+        name: "Baklava Árabe",
+        description: "Postre tradicional árabe con nueces y miel",
+        price: 18.50,
+        stock: 35,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: 20,
+        image_url: "https://example.com/images/baklava.jpg"
+      },
+
+      // Productos adicionales distribuidos
+      {
+        name: "Tarta de Manzana",
+        description: "Tarta de manzana casera con canela",
+        price: 22.00,
+        stock: 20,
+        category_id: categoryMap["Tartas"],
+        store_id: 3,
+        image_url: "https://example.com/images/tarta-manzana.jpg"
+      },
+      {
+        name: "Macarons Veganos",
+        description: "Macarons 100% vegetales en sabores variados",
+        price: 24.99,
+        stock: 18,
+        category_id: categoryMap["Macarons"],
+        store_id: 15,
+        image_url: "https://example.com/images/macarons-veganos.jpg"
+      },
+      {
+        name: "Cheesecake Sin Gluten",
+        description: "Cheesecake con base libre de gluten y frutos rojos",
+        price: 28.50,
+        stock: 16,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: 12,
+        image_url: "https://example.com/images/cheesecake-sin-gluten.jpg"
       }
     ];
 
-    // Eliminar productos existentes
-    await Product.destroy({ where: {} });
-    
-    // Insertar los nuevos productos
     await Product.bulkCreate(products);
     
-    console.log("✅ Products seeder ejecutado correctamente");
+    console.log(`✅ ${products.length} productos insertados correctamente`);
+    console.log("📊 Distribución por tienda:");
+    
+    // Contar productos por tienda
+    const storeCounts = {};
+    products.forEach(p => {
+      storeCounts[p.store_id] = (storeCounts[p.store_id] || 0) + 1;
+    });
+    
+    Object.entries(storeCounts).forEach(([storeId, count]) => {
+      console.log(`  - Tienda ${storeId}: ${count} productos`);
+    });
+    
   } catch (error) {
     console.error("❌ Error en Products seeder:", error);
     throw error;
