@@ -45,21 +45,24 @@ async function setup() {
 
     // Paso 2: Crear tablas
     console.log("\n[2/3] Creando tablas de la base de datos...");
+    // Desactivar foreign key checks para permitir recrear todas las tablas
+    await sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
     await sequelize.sync({ force: true });
+    await sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
     console.log("✅ Tablas creadas correctamente");
 
     // Paso 3: Insertar datos de prueba
     console.log("\n[3/3] Insertando datos de prueba (seeders)...");
 
-    // Ejecutar seeders en orden
+    // Ejecutar seeders en orden (usuarios primero para que stores tenga admin_id)
     await runSeeder(categorySeeder, 'Category');
     console.log("✅ Categorías creadas");
 
-    await runSeeder(storeSeeder, 'Store');
-    console.log("✅ Tiendas creadas");
-
     await runSeeder(userSeeder, 'User');
     console.log("✅ Usuarios creados");
+
+    await runSeeder(storeSeeder, 'Store');
+    console.log("✅ Tiendas creadas");
 
     await runSeeder(productSeeder, 'Product');
     console.log("✅ Productos creados");
