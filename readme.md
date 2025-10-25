@@ -1,6 +1,6 @@
 # 🍰 Pastry E-commerce API
 
-A complete REST API for a pastry e-commerce platform built with Node.js, Express, Sequelize, and MySQL.
+A complete REST API for a pastry e-commerce platform built with Node.js, Express, Sequelize, and MySQL
 
 ## 🚀 Quick Start
 
