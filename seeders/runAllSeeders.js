@@ -11,29 +11,29 @@ async function runAllSeeders() {
 
     console.log("[Seeders] Iniciando inserción de datos de prueba...\n");
 
-    // Definir el orden manualmente
-    // Definir el orden manualmente
-const seederFiles = [
-  'storeSeeder.js',     // ✅ Primero limpia las tiendas
-  'userSeeder.js',      // ✅ Luego los usuarios
-  'categorySeeder.js',
-  'productSeeder.js',
-  'orderSeeder.js',
-  'articleSeeder.js'
-];
+    // CAMBIO: userSeeder PRIMERO, luego storeSeeder
+    const seederFiles = [
+      "userSeeder.js", // ✅ PRIMERO usuarios (para tener admins)
+      "categorySeeder.js", // ✅ SEGUNDO categorías
+      "storeSeeder.js", // ✅ TERCERO tiendas (necesita admins)
+      "productSeeder.js", // ✅ CUARTO productos (necesita stores y categories)
+      "orderSeeder.js",
+      "articleSeeder.js",
+    ];
 
     // Ejecutar cada seeder en orden
     for (const file of seederFiles) {
       console.log(`➡️ Ejecutando: ${file}`);
       const seeder = require(path.join(__dirname, file));
 
-      if (seeder.up) {
+      if (typeof seeder === "function") {
+        await seeder();
+      } else if (seeder.up) {
         await seeder.up(sequelize.getQueryInterface(), sequelize.constructor);
       }
     }
 
     console.log("\n[Database] ✅ Todos los datos de prueba fueron insertados exitosamente.");
-
   } catch (error) {
     console.error("\n[Database] ❌ Error ejecutando seeders:", error);
   } finally {

@@ -55,6 +55,41 @@ const productController = {
     }
   },
 
+  getProductsByStore: async (req, res) => {
+    try {
+      const products = await Product.findAll({
+        where: { store_id: req.params.storeId },
+        include: [
+          {
+            model: Category,
+            as: "category",
+            attributes: ["id", "name"],
+          },
+        ],
+      });
+      res.json(products);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  getAllProducts: async (req, res) => {
+    try {
+      const products = await Product.findAll({
+        include: [
+          {
+            model: Category,
+            as: "category",
+            attributes: ["id", "name"],
+          },
+        ],
+      });
+      res.json(products);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
   createProduct: async (req, res) => {
     try {
       const category = await Category.findByPk(req.body.category_id);

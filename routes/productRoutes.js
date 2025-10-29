@@ -7,6 +7,7 @@ const { authenticateToken, requireAdmin } = require("../middlewares/authMiddlewa
 router.get("/", productController.getAllProducts);
 router.get("/category/:categoryId", validateCategoryId, productController.getProductsByCategory);
 router.get("/:id", validateId, productController.getProductById);
+router.get("/store/:storeId", productController.getProductsByStore);
 
 router.post("/", authenticateToken, requireAdmin, validateProduct, productController.createProduct);
 router.put(
