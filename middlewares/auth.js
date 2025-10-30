@@ -3,11 +3,10 @@ const jwt = require("jsonwebtoken");
 const sendResponse = (res, statusCode, success, message, data = null) => {
   const response = { success, message };
   if (data) response.data = data;
-
   return res.status(statusCode).json(response);
 };
 
-const authenticateToken = async (req, res, next) => {
+const authenticateToken = (req, res, next) => {
   try {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];

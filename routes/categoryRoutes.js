@@ -6,7 +6,7 @@ const categoryController = require("../controllers/categoryController");
 //   validateCategoryUpdate,
 //   validateId,
 // } = require("../middlewares/validation");
-const { authenticateToken, requireAdmin } = require("../middlewares/authMiddleware");
+const { authenticateToken, requireAdmin } = require("../middlewares/auth");
 
 router.get("/", categoryController.getAllCategories);
 router.get("/:id", categoryController.getCategoryById);
