@@ -14,23 +14,26 @@ module.exports = async () => {
     // ✅ Crear 3 usuarios admin primero
     users.push({
       name: "Admin Principal",
+      apellido: "Principal",
       email: "admin@example.com",
       password: "$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi", // password123
-      role: "admin"
+      role: "admin",
     });
 
     users.push({
       name: "Admin Secundario",
+      apellido: "User",
       email: "admin2@example.com",
       password: "$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
-      role: "admin"
+      role: "admin",
     });
 
     users.push({
       name: "Admin Tiendas",
+      apellido: "Tiendas",
       email: "admin3@example.com",
       password: "$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
-      role: "admin"
+      role: "admin",
     });
 
     // ✅ Crear 97 clientes normales
@@ -39,16 +42,16 @@ module.exports = async () => {
       const lastName = faker.person.lastName();
 
       users.push({
-        name: `${firstName} ${lastName}`,
+        name: `${lastName}`,
+        apellido: `${firstName}`,
         email: faker.internet.email({ firstName, lastName }).toLowerCase(),
         password: "$2b$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi",
-        role: "client"
+        role: "client",
       });
     }
 
     await User.bulkCreate(users);
     console.log(`✅ ${users.length} usuarios insertados (3 admins, 97 clientes)`);
-
   } catch (error) {
     console.error("❌ Error en Users seeder:", error);
     throw error;
