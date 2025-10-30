@@ -92,8 +92,8 @@ app.use((error, req, res, next) => {
 
 const PORT = process.env.APP_PORT || process.env.PORT || 3000;
 
-// Activar esta sección si quieres conectar a la base de datos
-/*
+
+// ✅ Solo dejar activo este bloque, porque ya maneja la conexión a la BD y el arranque del servidor.
 sequelize
   .authenticate()
   .then(() => {
@@ -112,14 +112,16 @@ sequelize
       console.log(`Servidor SIN BD corriendo en puerto ${PORT}`);
     });
   });
-*/
 
-// Solo iniciar el servidor si este archivo es ejecutado directamente
-// Esto evita que el servidor se inicie cuando se importa desde seeders
+
+// ❌ Esta parte causa conflicto porque intenta iniciar el servidor nuevamente.
+// ❌ Comentada para evitar el error “EADDRINUSE: address already in use”.
+/*
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
   });
 }
+*/
 
 module.exports = app;
