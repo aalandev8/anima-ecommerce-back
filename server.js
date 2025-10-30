@@ -12,12 +12,9 @@ app.use(cors({
 
 // Importar rutas de los modelos
 const routes = require("./routes"); // Rutas generales para otros modelos
-const storeRoutes = require("./routes/storeRoutes"); // Rutas de Store
 
 // Configurar las rutas
-app.use("/api/stores", storeRoutes); // Ruta para manejar tiendas
-
-routes(app); // Otras rutas generales
+routes(app); // Todas las rutas (incluyendo stores)
 
 app.get("/", (req, res) => {
   res.send(`
