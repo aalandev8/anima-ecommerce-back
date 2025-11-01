@@ -1,4 +1,4 @@
-// seeders/createUsers.js
+
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 const sequelize = require("../database");
@@ -9,7 +9,6 @@ async function createInitialUsers() {
     await sequelize.authenticate();
     console.log("✅ Conectado a la base de datos.");
 
-    // Lista de usuarios del equipo (usa 'name' en lugar de 'nombre')
     const users = [
       { name: "Micaela", lastname: "Dorado", email: "mica@example.com", password: "1234", role: "admin" },
       { name: "Facundo", lastname: "Duque", email: "facundo@example.com", password: "1234", role: "admin" },

@@ -4,7 +4,7 @@ const { generateToken, sendResponse } = require("../middlewares/auth");
 
 async function register(req, res) {
   try {
-    const { nombre, apellido, email, password, role = "client" } = req.body;
+    const { name, lastname, email, password, role = "client" } = req.body;
 
     if (!email || !password) {
       return sendResponse(res, 400, false, "Email y contraseña son requeridos");
@@ -21,8 +21,8 @@ async function register(req, res) {
 
     // Crear usuario
     const newUser = await User.create({
-      nombre: nombre || email.split("@")[0],
-      apellido: apellido || "",
+     name: name || email.split("@")[0],
+      lastname: lastname || "",
       email,
       password: hashedPassword,
       role,
@@ -34,8 +34,8 @@ async function register(req, res) {
     return sendResponse(res, 201, true, "Usuario registrado exitosamente", {
       user: {
         id: newUser.id,
-        nombre: newUser.nombre,
-        apellido: newUser.apellido,
+        name: newUser.name,
+        lastname: newUser.lastname,
         email: newUser.email,
         role: newUser.role,
       },
@@ -73,8 +73,8 @@ async function login(req, res) {
     return sendResponse(res, 200, true, "Login exitoso", {
       user: {
         id: user.id,
-        nombre: user.nombre,
-        apellido: user.apellido,
+        nome: user.name,
+        lastname: user.lastname,
         email: user.email,
         role: user.role,
       },
