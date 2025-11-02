@@ -10,7 +10,7 @@ async function register(req, res) {
       return sendResponse(res, 400, false, "Email y contraseña son requeridos");
     }
 
-    // Verificar si el usuario ya existe
+    
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
       return sendResponse(res, 400, false, "El correo ya está registrado");
@@ -20,10 +20,10 @@ if (!name || !lastname) {
     error: "El nombre y apellido son obligatorios" 
   });
 }
-    // Hashear contraseña
+   
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Crear usuario
+  
     const newUser = await User.create({
      name: name || "",
       lastname: lastname || "",
@@ -32,7 +32,7 @@ if (!name || !lastname) {
       role,
     });
 
-    // Generar token
+   
     const token = generateToken(newUser);
 
     return sendResponse(res, 201, true, "Usuario registrado exitosamente", {
@@ -59,19 +59,19 @@ async function login(req, res) {
       return sendResponse(res, 400, false, "Email y contraseña son requeridos");
     }
 
-    // Buscar usuario en la BD
+   
     const user = await User.findOne({ where: { email } });
     if (!user) {
       return sendResponse(res, 401, false, "Credenciales inválidas");
     }
 
-    // Verificar contraseña
+    
     const isValid = await bcrypt.compare(password, user.password);
     if (!isValid) {
       return sendResponse(res, 401, false, "Credenciales inválidas");
     }
 
-    // Generar token
+ 
     const token = generateToken(user);
 
     return sendResponse(res, 200, true, "Login exitoso", {
@@ -90,4 +90,30 @@ async function login(req, res) {
   }
 }
 
-module.exports = { register, login };
+async function getCurrentUser(req, res) {
+  try {
+    const user = await User.findByPk(req.user.id);
+    
+    if (!user) {
+      return sendResponse(res, 404, false, "Usuario no encontrado");
+    }
+
+    return sendResponse(res, 200, true, "Usuario obtenido", {
+      user: {
+        id: user.id,
+        name: user.name,
+        apellido: user.apellido,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    console.error("Error obteniendo usuario:", error);
+    return sendResponse(res, 500, false, "Error al obtener usuario");
+  }
+}
+module.exports = {
+  register,
+  login,
+  getCurrentUser,
+};

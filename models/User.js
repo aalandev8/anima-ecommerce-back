@@ -27,7 +27,6 @@ class User extends Model {
   }
 
   static associate(models) {
-    // Un usuario admin puede tener una tienda
     User.hasOne(models.Store, {
       foreignKey: "admin_id",
       as: "store",

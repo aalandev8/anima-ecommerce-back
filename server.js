@@ -10,11 +10,9 @@ app.use(cors({
   credentials: true 
 }));
 
-// Importar rutas de los modelos
-const routes = require("./routes"); // Rutas generales para otros modelos
+const routes = require("./routes"); 
 
-// Configurar las rutas
-routes(app); // Todas las rutas (incluyendo stores)
+routes(app); 
 
 app.get("/", (req, res) => {
   res.send(`
@@ -69,7 +67,7 @@ app.get("/", (req, res) => {
   `);
 });
 
-// Ruta no encontrada
+
 app.use("*", (req, res) => {
   res.status(404).json({
     success: false,
@@ -78,7 +76,7 @@ app.use("*", (req, res) => {
   });
 });
 
-// Manejador de errores
+
 app.use((error, req, res, next) => {
   console.error("❌ Error:", error);
   res.status(500).json({
@@ -90,7 +88,6 @@ app.use((error, req, res, next) => {
 const PORT = process.env.APP_PORT || process.env.PORT || 3000;
 
 
-// ✅ Solo dejar activo este bloque, porque ya maneja la conexión a la BD y el arranque del servidor.
 sequelize
   .authenticate()
   .then(() => {
@@ -111,14 +108,5 @@ sequelize
   });
 
 
-// ❌ Esta parte causa conflicto porque intenta iniciar el servidor nuevamente.
-// ❌ Comentada para evitar el error “EADDRINUSE: address already in use”.
-/*
-if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
-  });
-}
-*/
 
 module.exports = app;
