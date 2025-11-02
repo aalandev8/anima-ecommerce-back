@@ -15,13 +15,17 @@ async function register(req, res) {
     if (existingUser) {
       return sendResponse(res, 400, false, "El correo ya está registrado");
     }
-
+if (!name || !lastname) {
+  return res.status(400).json({ 
+    error: "El nombre y apellido son obligatorios" 
+  });
+}
     // Hashear contraseña
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Crear usuario
     const newUser = await User.create({
-     name: name || email.split("@")[0],
+     name: name || "",
       lastname: lastname || "",
       email,
       password: hashedPassword,

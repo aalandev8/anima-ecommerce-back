@@ -11,16 +11,14 @@
  *
  * ADVERTENCIA: Este script eliminará todos los datos existentes en la base de datos.
  */
-
+const bcrypt = require("bcrypt");
 require("dotenv").config();
-const path = require("path");
-const { execSync } = require("child_process");
 const { sequelize } = require("./models");
 
 // Importar seeders
 const categorySeeder = require("./seeders/categorySeeder");
 const storeSeeder = require("./seeders/storeSeeder");
-const userSeeder = require("./seeders/userSeeder");
+const createUsers = require("./seeders/createUsers");
 const productSeeder = require("./seeders/productSeeder");
 
 async function runSeeder(seeder, name) {
@@ -58,7 +56,7 @@ async function setup() {
     await runSeeder(categorySeeder, 'Category');
     console.log("✅ Categorías creadas");
 
-    await runSeeder(userSeeder, 'User');
+    await runSeeder(createUsers, 'User');
     console.log("✅ Usuarios creados");
 
     await runSeeder(storeSeeder, 'Store');
@@ -74,11 +72,16 @@ async function setup() {
     console.log("  👉 npm start (modo producción)\n");
   } catch (error) {
     console.error("\n❌ Error durante la configuración:", error.message);
+    console.error("\nStack trace:", error); 
     console.log("\nVerifica que:");
     console.log("  1. Tu archivo .env tenga la configuración correcta de base de datos");
     console.log("  2. El servidor de MySQL esté corriendo");
     console.log("  3. La base de datos especificada en .env exista\n");
     process.exit(1);
+  }
+  finally {
+    await sequelize.close();
+    console.log("🔒 Conexión cerrada.\n");
   }
 }
 
