@@ -4,6 +4,7 @@ const {
   diabeticStores,
   glutenFreeStores,
   veganStores,
+  vegetarianStores,
   halalStores
 } = require("./stores/index");
 
@@ -30,6 +31,7 @@ module.exports = async () => {
       ...diabeticStores,
       ...glutenFreeStores,
       ...veganStores,
+      ...vegetarianStores,
       ...halalStores
     ].map(store => ({
       name: store.name,
@@ -53,6 +55,7 @@ module.exports = async () => {
       diabetic: diabeticStores.length,
       "gluten-free": glutenFreeStores.length,
       vegan: veganStores.length,
+      vegetarian: vegetarianStores.length,
       halal: halalStores.length
     };
 

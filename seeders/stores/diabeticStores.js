@@ -58,6 +58,36 @@ const diabeticStores = [
     address: "Cordón, Santiago de Chile 1345, Montevideo",
     phone: "+598 2903 6688",
     email: "contacto@healthycarbs.com.uy"
+  },
+  {
+    id: 25,
+    name: "Sweet Life Sugar Free",
+    description: "Postres y dulces sin azúcar para diabéticos. Endulzados con stevia y eritritol.",
+    image: "https://images.unsplash.com/photo-1587241321921-91a834d82b01?w=400",
+    category: "diabetic",
+    rating: 4.7,
+    deliveryTime: "30-40 min",
+    deliveryFee: 120,
+    featured: true,
+    tags: ["Postres", "Sin azúcar", "Stevia"],
+    address: "Malvín, Rivera 4567, Montevideo",
+    phone: "+598 2619 3344",
+    email: "info@sweetlifesugarfree.com.uy"
+  },
+  {
+    id: 26,
+    name: "Diabetic Delight Meals",
+    description: "Menús completos diseñados para diabéticos. Conteo de carbohidratos en cada plato.",
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=400",
+    category: "diabetic",
+    rating: 4.8,
+    deliveryTime: "35-45 min",
+    deliveryFee: 0,
+    featured: false,
+    tags: ["Menú completo", "Nutricional", "Balanceado"],
+    address: "Tres Cruces, Artigas 1890, Montevideo",
+    phone: "+598 2481 5599",
+    email: "pedidos@diabeticdelight.com.uy"
   }
 ];
 

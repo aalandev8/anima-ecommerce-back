@@ -58,6 +58,36 @@ const glutenFreeStores = [
     address: "Carrasco, Av. Arocena 1523, Montevideo",
     phone: "+598 2601 4433",
     email: "reservas@pastawithoutlimits.com.uy"
+  },
+  {
+    id: 29,
+    name: "GF Sweet Bakery",
+    description: "Pastelería sin gluten artesanal. Brownies, cookies y tortas certificadas sin TACC.",
+    image: "https://images.unsplash.com/photo-1587241321921-91a834d82b01?w=400",
+    category: "gluten-free",
+    rating: 4.9,
+    deliveryTime: "25-35 min",
+    deliveryFee: 0,
+    featured: true,
+    tags: ["Pastelería", "Sin TACC", "Dulces"],
+    address: "Pocitos, 26 de Marzo 1234, Montevideo",
+    phone: "+598 2709 2233",
+    email: "info@gfsweetbakery.com.uy"
+  },
+  {
+    id: 30,
+    name: "Celiac Friendly Café",
+    description: "Café y brunch 100% libre de gluten. Desayunos, sándwiches y smoothies.",
+    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400",
+    category: "gluten-free",
+    rating: 4.7,
+    deliveryTime: "20-30 min",
+    deliveryFee: 100,
+    featured: false,
+    tags: ["Café", "Brunch", "Desayunos"],
+    address: "Malvín, Propios 2890, Montevideo",
+    phone: "+598 2618 7766",
+    email: "contacto@celiacfriendly.com.uy"
   }
 ];
 

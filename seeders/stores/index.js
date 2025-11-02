@@ -2,6 +2,7 @@ const kosherStores = require('./kosherStores');
 const diabeticStores = require('./diabeticStores');
 const glutenFreeStores = require('./glutenFreeStores');
 const veganStores = require('./veganStores');
+const vegetarianStores = require('./vegetarianStores');
 const halalStores = require('./halalStores');
 
 // Combinar todas las tiendas
@@ -10,6 +11,7 @@ const allStores = [
   ...diabeticStores,
   ...glutenFreeStores,
   ...veganStores,
+  ...vegetarianStores,
   ...halalStores
 ];
 
@@ -44,6 +46,7 @@ module.exports = {
   diabeticStores,
   glutenFreeStores,
   veganStores,
+  vegetarianStores,
   halalStores,
   // Exportar funciones helper
   allStores,

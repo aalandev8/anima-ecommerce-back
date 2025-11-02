@@ -17,13 +17,13 @@ module.exports = async () => {
     // ⭐ OBTENER LOS IDs REALES DE LAS TIENDAS
     const stores = await Store.findAll({ order: [["id", "ASC"]] });
 
-    if (stores.length < 20) {
+    if (stores.length < 34) {
       throw new Error("No hay suficientes tiendas. Ejecuta el storeSeeder primero.");
     }
 
     const products = [
-      // KOSHER STORES
-      // Tienda 1
+      // ==================== KOSHER STORES ====================
+      // Store 1: Kosher Delight (Parrilla)
       {
         name: "Parrillada Kosher Premium",
         description: "Selección de carnes kosher certificadas a la parrilla",
@@ -42,8 +42,26 @@ module.exports = async () => {
         store_id: stores[0].id,
         image_url: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80",
       },
+      {
+        name: "Brochetas de Cordero Kosher",
+        description: "Brochetas de cordero marinado con especias orientales",
+        price: 48.0,
+        stock: 18,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[0].id,
+        image_url: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&q=80",
+      },
+      {
+        name: "Bife de Chorizo Kosher",
+        description: "Corte premium de bife de chorizo kosher certificado",
+        price: 52.99,
+        stock: 12,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[0].id,
+        image_url: "https://images.unsplash.com/photo-1546833998-877b37c2e5c6?w=800&q=80",
+      },
 
-      // Tienda 2
+      // Store 2: Jerusalem Flavors (Israelí/Mediterráneo)
       {
         name: "Falafel Plate",
         description: "Plato de falafel con hummus, tahini y ensalada fresca",
@@ -62,8 +80,26 @@ module.exports = async () => {
         store_id: stores[1].id,
         image_url: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800&q=80",
       },
+      {
+        name: "Hummus Bowl Premium",
+        description: "Hummus cremoso con garbanzos enteros, aceite de oliva y pita",
+        price: 24.0,
+        stock: 35,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[1].id,
+        image_url: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=800&q=80",
+      },
+      {
+        name: "Sabich en Pan Pita",
+        description: "Berenjena frita, huevo duro, ensalada israelí y tahini",
+        price: 26.5,
+        stock: 28,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[1].id,
+        image_url: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80",
+      },
 
-      // Tienda 3
+      // Store 3: Shabbat Kitchen (Panadería Tradicional)
       {
         name: "Jalá Tradicional",
         description: "Pan trenzado kosher para Shabbat, horneado fresco",
@@ -82,8 +118,26 @@ module.exports = async () => {
         store_id: stores[2].id,
         image_url: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&q=80",
       },
+      {
+        name: "Babka de Canela",
+        description: "Pan dulce trenzado con canela y azúcar",
+        price: 25.0,
+        stock: 30,
+        category_id: categoryMap["Panes"],
+        store_id: stores[2].id,
+        image_url: "https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=800&q=80",
+      },
+      {
+        name: "Hamantaschen Variados",
+        description: "Galletas triangulares con rellenos de fruta y amapola",
+        price: 20.0,
+        stock: 40,
+        category_id: categoryMap["Galletas"],
+        store_id: stores[2].id,
+        image_url: "https://images.unsplash.com/photo-1599785209707-a456fc1337bb?w=800&q=80",
+      },
 
-      // Tienda 4
+      // Store 4: Kosher Sushi Bar
       {
         name: "Sushi Roll Salmón",
         description: "Roll de salmón fresco certificado kosher con aguacate",
@@ -102,8 +156,85 @@ module.exports = async () => {
         store_id: stores[3].id,
         image_url: "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=800&q=80",
       },
+      {
+        name: "California Roll Kosher",
+        description: "Roll clásico con cangrejo, aguacate y pepino",
+        price: 35.0,
+        stock: 25,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[3].id,
+        image_url: "https://images.unsplash.com/photo-1611143669185-af224c5e3252?w=800&q=80",
+      },
+      {
+        name: "Temaki de Atún",
+        description: "Cono de alga nori con atún fresco y vegetales",
+        price: 32.0,
+        stock: 22,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[3].id,
+        image_url: "https://images.unsplash.com/photo-1553621042-f6e147245754?w=800&q=80",
+      },
 
-      // DIABETIC STORES
+      // Store 33: Tel Aviv Eats (Street Food Israelí)
+      {
+        name: "Sabich Supreme",
+        description: "Pita rellena con berenjena frita, huevo y amba",
+        price: 29.0,
+        stock: 30,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[32].id,
+        image_url: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&q=80",
+      },
+      {
+        name: "Shakshuka con Pita",
+        description: "Huevos pochados en salsa de tomate especiada",
+        price: 27.5,
+        stock: 25,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[32].id,
+        image_url: "https://images.unsplash.com/photo-1607532941433-304659e8198a?w=800&q=80",
+      },
+      {
+        name: "Burekas de Queso",
+        description: "Masa hojaldrada rellena de queso feta",
+        price: 22.0,
+        stock: 35,
+        category_id: categoryMap["Galletas"],
+        store_id: stores[32].id,
+        image_url: "https://images.unsplash.com/photo-1571066811602-716837d681de?w=800&q=80",
+      },
+
+      // Store 34: Kosher Pastry House (Repostería)
+      {
+        name: "Torta de Chocolate Kosher",
+        description: "Torta de chocolate premium para celebraciones",
+        price: 65.0,
+        stock: 10,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[33].id,
+        image_url: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
+      },
+      {
+        name: "Cheesecake de Frutillas",
+        description: "Cheesecake kosher con cobertura de frutillas frescas",
+        price: 58.0,
+        stock: 12,
+        category_id: categoryMap["Tartas"],
+        store_id: stores[33].id,
+        image_url: "https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=800&q=80",
+      },
+      {
+        name: "Cupcakes Gourmet",
+        description: "Set de 6 cupcakes decorados para eventos",
+        price: 42.0,
+        stock: 20,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[33].id,
+        image_url: "https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=800&q=80",
+      },
+
+      // ==================== DIABETIC STORES ====================
+      // Store 5: Sugar Free Zone
       {
         name: "Ensalada Power Bowl",
         description: "Bowl nutritivo con quinoa, vegetales y proteína magra",
@@ -114,6 +245,35 @@ module.exports = async () => {
         image_url: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
       },
       {
+        name: "Salmón con Vegetales al Vapor",
+        description: "Filete de salmón con brócoli y espárragos",
+        price: 35.0,
+        stock: 20,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[4].id,
+        image_url: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=800&q=80",
+      },
+      {
+        name: "Wrap de Pollo Integral",
+        description: "Wrap de tortilla integral con pollo grillado y vegetales",
+        price: 22.0,
+        stock: 28,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[4].id,
+        image_url: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=800&q=80",
+      },
+      {
+        name: "Postre Sin Azúcar de Limón",
+        description: "Mousse de limón endulzado con stevia",
+        price: 18.5,
+        stock: 25,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[4].id,
+        image_url: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=800&q=80",
+      },
+
+      // Store 6: Balanced Bites
+      {
         name: "Pollo Grillado con Vegetales",
         description: "Pechuga de pollo a la parrilla con vegetales al vapor",
         price: 28.0,
@@ -122,8 +282,134 @@ module.exports = async () => {
         store_id: stores[5].id,
         image_url: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=800&q=80",
       },
+      {
+        name: "Ensalada Mediterránea",
+        description: "Ensalada con queso feta, aceitunas y aderezo bajo en carbos",
+        price: 21.5,
+        stock: 30,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[5].id,
+        image_url: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80",
+      },
+      {
+        name: "Bowl de Proteínas",
+        description: "Bowl con huevos, aguacate, salmón y espinaca",
+        price: 26.0,
+        stock: 22,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[5].id,
+        image_url: "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=800&q=80",
+      },
 
-      // GLUTEN-FREE STORES
+      // Store 7: Diabetic Gourmet
+      {
+        name: "Filete Mignon con Vegetales",
+        description: "Filete mignon gourmet con vegetales asados sin azúcar",
+        price: 48.0,
+        stock: 15,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[6].id,
+        image_url: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800&q=80",
+      },
+      {
+        name: "Risotto de Quinoa",
+        description: "Risotto preparado con quinoa en lugar de arroz",
+        price: 32.0,
+        stock: 20,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[6].id,
+        image_url: "https://images.unsplash.com/photo-1476124369491-c4fbf423085d?w=800&q=80",
+      },
+      {
+        name: "Tarta de Almendras Sugar Free",
+        description: "Tarta de almendras sin azúcar añadida",
+        price: 28.0,
+        stock: 18,
+        category_id: categoryMap["Tartas"],
+        store_id: stores[6].id,
+        image_url: "https://images.unsplash.com/photo-1519915212116-7cfef71f1d3e?w=800&q=80",
+      },
+
+      // Store 8: Healthy Carbs
+      {
+        name: "Bowl de Avena Proteica",
+        description: "Avena con proteína, nueces y frutos rojos sin azúcar",
+        price: 19.5,
+        stock: 35,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[7].id,
+        image_url: "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?w=800&q=80",
+      },
+      {
+        name: "Batido Verde Energizante",
+        description: "Batido de espinaca, pepino y manzana verde",
+        price: 16.0,
+        stock: 40,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[7].id,
+        image_url: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=800&q=80",
+      },
+      {
+        name: "Pasta Integral con Pesto",
+        description: "Pasta integral con salsa pesto casera",
+        price: 24.0,
+        stock: 25,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[7].id,
+        image_url: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80",
+      },
+
+      // Store 25: Sweet Life Sugar Free
+      {
+        name: "Brownie Sin Azúcar",
+        description: "Brownie de chocolate endulzado con eritritol",
+        price: 15.0,
+        stock: 30,
+        category_id: categoryMap["Galletas"],
+        store_id: stores[24].id,
+        image_url: "https://images.unsplash.com/photo-1590841609987-4ac211afdde1?w=800&q=80",
+      },
+      {
+        name: "Galletas de Avena Sugar Free",
+        description: "Galletas crujientes de avena sin azúcar añadida",
+        price: 12.5,
+        stock: 35,
+        category_id: categoryMap["Galletas"],
+        store_id: stores[24].id,
+        image_url: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800&q=80",
+      },
+      {
+        name: "Cheesecake de Vainilla Sin Azúcar",
+        description: "Cheesecake cremoso endulzado con stevia",
+        price: 24.0,
+        stock: 20,
+        category_id: categoryMap["Tartas"],
+        store_id: stores[24].id,
+        image_url: "https://images.unsplash.com/photo-1524351199678-941a58a3df50?w=800&q=80",
+      },
+
+      // Store 26: Diabetic Delight Meals
+      {
+        name: "Menú Completo Diabético",
+        description: "Entrada, plato principal y postre balanceado para diabéticos",
+        price: 38.0,
+        stock: 18,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[25].id,
+        image_url: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
+      },
+      {
+        name: "Pechuga de Pavo al Horno",
+        description: "Pechuga de pavo con hierbas y vegetales asados",
+        price: 29.0,
+        stock: 22,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[25].id,
+        image_url: "https://images.unsplash.com/photo-1588347818036-b6d291282eee?w=800&q=80",
+      },
+
+      // ==================== GLUTEN-FREE STORES ====================
+      // Store 9: Gluten Free Bakery
       {
         name: "Brownie Sin Gluten",
         description: "Delicioso brownie libre de gluten con nueces",
@@ -134,6 +420,35 @@ module.exports = async () => {
         image_url: "https://images.unsplash.com/photo-1590841609987-4ac211afdde1?w=800&q=80",
       },
       {
+        name: "Pan de Molde Sin Gluten",
+        description: "Pan de molde esponjoso libre de gluten",
+        price: 18.0,
+        stock: 25,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[8].id,
+        image_url: "https://images.unsplash.com/photo-1585478259715-876acc5be8eb?w=800&q=80",
+      },
+      {
+        name: "Galletas de Almendra GF",
+        description: "Galletas crujientes de harina de almendra",
+        price: 14.5,
+        stock: 30,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[8].id,
+        image_url: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=800&q=80",
+      },
+      {
+        name: "Muffins Sin Gluten Variados",
+        description: "Set de muffins de arándanos, chocolate y limón",
+        price: 16.0,
+        stock: 24,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[8].id,
+        image_url: "https://images.unsplash.com/photo-1426869884541-df7117556757?w=800&q=80",
+      },
+
+      // Store 10: Celiac Heaven
+      {
         name: "Pan Sin Gluten Artesanal",
         description: "Pan artesanal libre de gluten con semillas",
         price: 15.99,
@@ -143,6 +458,26 @@ module.exports = async () => {
         image_url: "https://images.unsplash.com/photo-1585478259715-876acc5be8eb?w=800&q=80",
       },
       {
+        name: "Empanadas Sin TACC",
+        description: "Empanadas de carne con masa certificada sin gluten",
+        price: 22.0,
+        stock: 25,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[9].id,
+        image_url: "https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?w=800&q=80",
+      },
+      {
+        name: "Torta de Zanahoria GF",
+        description: "Torta de zanahoria sin gluten con frosting de queso",
+        price: 28.0,
+        stock: 15,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[9].id,
+        image_url: "https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=800&q=80",
+      },
+
+      // Store 11: GF Pizza House
+      {
         name: "Pizza Sin Gluten Margarita",
         description: "Pizza con masa sin gluten, salsa de tomate y mozzarella",
         price: 32.0,
@@ -151,8 +486,105 @@ module.exports = async () => {
         store_id: stores[10].id,
         image_url: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80",
       },
+      {
+        name: "Pizza Pepperoni GF",
+        description: "Pizza sin gluten con pepperoni y queso extra",
+        price: 35.0,
+        stock: 16,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[10].id,
+        image_url: "https://images.unsplash.com/photo-1628840042765-356cda07504e?w=800&q=80",
+      },
+      {
+        name: "Pizza Vegetariana GF",
+        description: "Pizza sin gluten con vegetales asados",
+        price: 33.0,
+        stock: 20,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[10].id,
+        image_url: "https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?w=800&q=80",
+      },
 
-      // VEGAN STORES
+      // Store 12: Pasta Without Limits
+      {
+        name: "Ravioles Sin Gluten",
+        description: "Ravioles de ricota con masa libre de gluten",
+        price: 28.0,
+        stock: 22,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[11].id,
+        image_url: "https://images.unsplash.com/photo-1587740908075-9ea7962be4d5?w=800&q=80",
+      },
+      {
+        name: "Lasaña Sin Gluten",
+        description: "Lasaña de carne con pasta sin gluten",
+        price: 32.0,
+        stock: 18,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[11].id,
+        image_url: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800&q=80",
+      },
+      {
+        name: "Cheesecake Sin Gluten",
+        description: "Cheesecake con base libre de gluten y frutos rojos",
+        price: 28.5,
+        stock: 16,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[11].id,
+        image_url: "https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=800&q=80",
+      },
+
+      // Store 29: GF Sweet Bakery
+      {
+        name: "Torta de Chocolate GF",
+        description: "Torta de chocolate húmeda sin gluten",
+        price: 35.0,
+        stock: 15,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[28].id,
+        image_url: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
+      },
+      {
+        name: "Cookies de Chocolate Chip GF",
+        description: "Galletas con chips de chocolate sin gluten",
+        price: 13.5,
+        stock: 32,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[28].id,
+        image_url: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=800&q=80",
+      },
+      {
+        name: "Alfajores Sin TACC",
+        description: "Alfajores de maicena sin gluten con dulce de leche",
+        price: 16.0,
+        stock: 28,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[28].id,
+        image_url: "https://images.unsplash.com/photo-1612203985729-70726954388c?w=800&q=80",
+      },
+
+      // Store 30: Celiac Friendly Café
+      {
+        name: "Sándwich GF de Jamón y Queso",
+        description: "Sándwich en pan sin gluten con jamón y queso",
+        price: 18.0,
+        stock: 25,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[29].id,
+        image_url: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=800&q=80",
+      },
+      {
+        name: "Smoothie Bowl GF",
+        description: "Bowl de frutas con granola sin gluten",
+        price: 20.0,
+        stock: 30,
+        category_id: categoryMap["Productos Sin Gluten"],
+        store_id: stores[29].id,
+        image_url: "https://images.unsplash.com/photo-1590301157890-4810ed352733?w=800&q=80",
+      },
+
+      // ==================== VEGAN STORES ====================
+      // Store 13: Green Revolution
       {
         name: "Burger Vegana Beyond",
         description: "Hamburguesa plant-based con queso vegano y vegetales",
@@ -163,6 +595,35 @@ module.exports = async () => {
         image_url: "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=800&q=80",
       },
       {
+        name: "Tacos Veganos",
+        description: "Tacos con carne vegetal, guacamole y salsa",
+        price: 24.0,
+        stock: 30,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[12].id,
+        image_url: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=800&q=80",
+      },
+      {
+        name: "Wrap de Falafel Vegano",
+        description: "Wrap integral con falafel, hummus y vegetales",
+        price: 22.5,
+        stock: 28,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[12].id,
+        image_url: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=800&q=80",
+      },
+      {
+        name: "Nuggets Veganos",
+        description: "Nuggets de proteína vegetal crujientes",
+        price: 19.0,
+        stock: 35,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[12].id,
+        image_url: "https://images.unsplash.com/photo-1562967914-608f82629710?w=800&q=80",
+      },
+
+      // Store 14: Vegan Bowl Co.
+      {
         name: "Bowl Vegano Mediterráneo",
         description: "Bowl con falafel, hummus, tabulé y vegetales frescos",
         price: 26.5,
@@ -172,6 +633,26 @@ module.exports = async () => {
         image_url: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800&q=80",
       },
       {
+        name: "Buddha Bowl",
+        description: "Bowl completo con quinoa, tofu, aguacate y vegetales",
+        price: 28.0,
+        stock: 25,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[13].id,
+        image_url: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
+      },
+      {
+        name: "Poke Bowl Vegano",
+        description: "Bowl estilo poke con tofu marinado y edamame",
+        price: 29.0,
+        stock: 22,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[13].id,
+        image_url: "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=800&q=80",
+      },
+
+      // Store 15: Plant Power Kitchen
+      {
         name: "Pastel de Chocolate Vegano",
         description: "Pastel de chocolate 100% vegetal con ganache",
         price: 35.0,
@@ -180,8 +661,231 @@ module.exports = async () => {
         store_id: stores[14].id,
         image_url: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80",
       },
+      {
+        name: "Risotto de Hongos Vegano",
+        description: "Risotto cremoso con hongos y parmesano vegano",
+        price: 32.0,
+        stock: 18,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[14].id,
+        image_url: "https://images.unsplash.com/photo-1476124369491-c4fbf423085d?w=800&q=80",
+      },
+      {
+        name: "Wellington Vegano",
+        description: "Hojaldre relleno de setas y nueces",
+        price: 38.0,
+        stock: 12,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[14].id,
+        image_url: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80",
+      },
 
-      // HALAL STORES
+      // Store 16: Vegan Street Food
+      {
+        name: "Hot Dog Vegano",
+        description: "Hot dog con salchicha vegetal y salsas variadas",
+        price: 18.0,
+        stock: 35,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[15].id,
+        image_url: "https://images.unsplash.com/photo-1612392062798-2384f976bb22?w=800&q=80",
+      },
+      {
+        name: "Nachos Veganos",
+        description: "Nachos con queso vegano, guacamole y jalapeños",
+        price: 21.0,
+        stock: 30,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[15].id,
+        image_url: "https://images.unsplash.com/photo-1582169296194-e4d644c48063?w=800&q=80",
+      },
+      {
+        name: "Quesadilla Vegana",
+        description: "Quesadilla con queso vegano y vegetales",
+        price: 19.5,
+        stock: 28,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[15].id,
+        image_url: "https://images.unsplash.com/photo-1618040996337-56904b7850b9?w=800&q=80",
+      },
+
+      // Store 27: Vegan Sweets & Treats
+      {
+        name: "Macarons Veganos",
+        description: "Macarons 100% vegetales en sabores variados",
+        price: 24.99,
+        stock: 18,
+        category_id: categoryMap["Macarons"],
+        store_id: stores[26].id,
+        image_url: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=800&q=80",
+      },
+      {
+        name: "Cupcakes Veganos Decorados",
+        description: "Cupcakes veganos con frosting de vainilla",
+        price: 20.0,
+        stock: 25,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[26].id,
+        image_url: "https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?w=800&q=80",
+      },
+      {
+        name: "Donuts Veganos",
+        description: "Donuts veganos con glaseado de chocolate",
+        price: 16.0,
+        stock: 30,
+        category_id: categoryMap["Galletas"],
+        store_id: stores[26].id,
+        image_url: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&q=80",
+      },
+
+      // Store 28: Pure Vegan Bistro
+      {
+        name: "Brunch Vegano Completo",
+        description: "Brunch con tofu scramble, pan y frutas",
+        price: 32.0,
+        stock: 20,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[27].id,
+        image_url: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=800&q=80",
+      },
+      {
+        name: "Lasaña Vegana",
+        description: "Lasaña con bechamel de anacardos y vegetales",
+        price: 29.0,
+        stock: 18,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[27].id,
+        image_url: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800&q=80",
+      },
+
+      // ==================== VEGETARIAN STORES ====================
+      // Store 21: Veggie Paradise
+      {
+        name: "Burger Vegetariana de Queso",
+        description: "Hamburguesa vegetariana con queso halloumi",
+        price: 26.0,
+        stock: 28,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[20].id,
+        image_url: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=800&q=80",
+      },
+      {
+        name: "Lasaña Vegetariana",
+        description: "Lasaña de espinaca y ricota",
+        price: 28.0,
+        stock: 22,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[20].id,
+        image_url: "https://images.unsplash.com/photo-1574894709920-11b28e7367e3?w=800&q=80",
+      },
+      {
+        name: "Pizza Margarita Vegetariana",
+        description: "Pizza con tomate, mozzarella y albahaca fresca",
+        price: 30.0,
+        stock: 25,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[20].id,
+        image_url: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800&q=80",
+      },
+      {
+        name: "Tortilla de Papas",
+        description: "Tortilla española de papas con cebolla",
+        price: 22.0,
+        stock: 30,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[20].id,
+        image_url: "https://images.unsplash.com/photo-1606310834146-b683f9a15da6?w=800&q=80",
+      },
+
+      // Store 22: Garden Fresh Kitchen
+      {
+        name: "Ensalada Caprese Orgánica",
+        description: "Tomate, mozzarella de búfala y albahaca orgánicos",
+        price: 24.0,
+        stock: 25,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[21].id,
+        image_url: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=800&q=80",
+      },
+      {
+        name: "Quiche de Vegetales",
+        description: "Quiche con vegetales orgánicos de la huerta",
+        price: 26.0,
+        stock: 20,
+        category_id: categoryMap["Tartas"],
+        store_id: stores[21].id,
+        image_url: "https://images.unsplash.com/photo-1557844352-761f2565b576?w=800&q=80",
+      },
+      {
+        name: "Wrap de Hummus y Vegetales",
+        description: "Wrap integral con hummus casero y vegetales frescos",
+        price: 21.0,
+        stock: 28,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[21].id,
+        image_url: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=800&q=80",
+      },
+
+      // Store 23: Veggie Grill & More
+      {
+        name: "Parrillada de Vegetales y Queso",
+        description: "Mix de vegetales asados con queso halloumi grillado",
+        price: 32.0,
+        stock: 22,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[22].id,
+        image_url: "https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?w=800&q=80",
+      },
+      {
+        name: "Provoleta Vegetariana",
+        description: "Provoleta gratinada con tomates y orégano",
+        price: 24.0,
+        stock: 25,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[22].id,
+        image_url: "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=800&q=80",
+      },
+      {
+        name: "Berenjena a la Parmesana",
+        description: "Capas de berenjena con queso y salsa de tomate",
+        price: 28.0,
+        stock: 20,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[22].id,
+        image_url: "https://images.unsplash.com/photo-1540420828642-a2c1e61c2e8f?w=800&q=80",
+      },
+
+      // Store 24: The Green Plate
+      {
+        name: "Tarta de Espinaca y Ricota",
+        description: "Tarta casera de espinaca y queso ricota",
+        price: 23.0,
+        stock: 28,
+        category_id: categoryMap["Tartas"],
+        store_id: stores[23].id,
+        image_url: "https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=800&q=80",
+      },
+      {
+        name: "Budín de Verduras",
+        description: "Budín de vegetales con queso gratinado",
+        price: 20.0,
+        stock: 30,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[23].id,
+        image_url: "https://images.unsplash.com/photo-1608165115878-2dfad1e89d2b?w=800&q=80",
+      },
+      {
+        name: "Empanadas Vegetarianas Mix",
+        description: "Mix de empanadas de queso, humita y espinaca",
+        price: 18.0,
+        stock: 35,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[23].id,
+        image_url: "https://images.unsplash.com/photo-1586511925558-a4c6376fe65f?w=800&q=80",
+      },
+
+      // ==================== HALAL STORES ====================
+      // Store 17: Halal Grill House
       {
         name: "Kebab Halal",
         description: "Kebab de cordero halal con pan árabe y vegetales",
@@ -192,6 +896,35 @@ module.exports = async () => {
         image_url: "https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&q=80",
       },
       {
+        name: "Kofta a la Parrilla",
+        description: "Kofta de carne especiada grillada",
+        price: 30.0,
+        stock: 25,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[16].id,
+        image_url: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=800&q=80",
+      },
+      {
+        name: "Mixed Grill Halal",
+        description: "Parrillada mixta con cordero, pollo y kofta",
+        price: 42.0,
+        stock: 18,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[16].id,
+        image_url: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80",
+      },
+      {
+        name: "Shawarma de Cordero",
+        description: "Shawarma de cordero con tahini y vegetales",
+        price: 28.0,
+        stock: 28,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[16].id,
+        image_url: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&q=80",
+      },
+
+      // Store 18: Istanbul Kitchen
+      {
         name: "Biryani de Pollo",
         description: "Arroz basmati con pollo halal especiado al estilo indio",
         price: 28.0,
@@ -200,6 +933,35 @@ module.exports = async () => {
         store_id: stores[17].id,
         image_url: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&q=80",
       },
+      {
+        name: "Döner Kebab Turco",
+        description: "Döner tradicional turco con carne halal",
+        price: 26.0,
+        stock: 30,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[17].id,
+        image_url: "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800&q=80",
+      },
+      {
+        name: "Lahmacun",
+        description: "Pizza turca con carne picada y especias",
+        price: 22.0,
+        stock: 28,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[17].id,
+        image_url: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80",
+      },
+      {
+        name: "Baklava Turca",
+        description: "Postre turco de hojaldre, nueces y miel",
+        price: 16.0,
+        stock: 35,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[17].id,
+        image_url: "https://images.unsplash.com/photo-1519676867240-f03562e64548?w=800&q=80",
+      },
+
+      // Store 19: Arabian Nights
       {
         name: "Shawarma Halal Mixto",
         description: "Mix de carnes halal con salsa tahini y ensalada",
@@ -210,6 +972,35 @@ module.exports = async () => {
         image_url: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=800&q=80",
       },
       {
+        name: "Mansaf",
+        description: "Plato tradicional de cordero con arroz y yogurt",
+        price: 38.0,
+        stock: 15,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[18].id,
+        image_url: "https://images.unsplash.com/photo-1585937421612-70e50b2f43ff?w=800&q=80",
+      },
+      {
+        name: "Mezze Árabe",
+        description: "Selección de entradas árabes: hummus, baba ganoush, falafel",
+        price: 32.0,
+        stock: 22,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[18].id,
+        image_url: "https://images.unsplash.com/photo-1606787366850-de6330128bfc?w=800&q=80",
+      },
+      {
+        name: "Kunafa",
+        description: "Postre árabe de queso con jarabe dulce",
+        price: 20.0,
+        stock: 25,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[18].id,
+        image_url: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=800&q=80",
+      },
+
+      // Store 20: Halal Burger Joint
+      {
         name: "Baklava Árabe",
         description: "Postre tradicional árabe con nueces y miel",
         price: 18.5,
@@ -218,34 +1009,81 @@ module.exports = async () => {
         store_id: stores[19].id,
         image_url: "https://images.unsplash.com/photo-1519676867240-f03562e64548?w=800&q=80",
       },
+      {
+        name: "Burger Halal Classic",
+        description: "Hamburguesa de carne halal con queso y vegetales",
+        price: 24.0,
+        stock: 30,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[19].id,
+        image_url: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80",
+      },
+      {
+        name: "Double Burger Halal",
+        description: "Doble carne halal con bacon de pavo y cheddar",
+        price: 28.0,
+        stock: 25,
+        category_id: categoryMap["Cupcakes"],
+        store_id: stores[19].id,
+        image_url: "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=800&q=80",
+      },
 
-      // Productos adicionales
+      // Store 31: Marruecos Food
       {
-        name: "Tarta de Manzana",
-        description: "Tarta de manzana casera con canela",
-        price: 22.0,
-        stock: 20,
-        category_id: categoryMap["Tartas"],
-        store_id: stores[2].id,
-        image_url: "https://images.unsplash.com/photo-1535920527002-b35e96722eb9?w=800&q=80",
-      },
-      {
-        name: "Macarons Veganos",
-        description: "Macarons 100% vegetales en sabores variados",
-        price: 24.99,
+        name: "Tagine de Cordero",
+        description: "Guiso marroquí de cordero con ciruelas y almendras",
+        price: 36.0,
         stock: 18,
-        category_id: categoryMap["Macarons"],
-        store_id: stores[14].id,
-        image_url: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=800&q=80",
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[30].id,
+        image_url: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&q=80",
       },
       {
-        name: "Cheesecake Sin Gluten",
-        description: "Cheesecake con base libre de gluten y frutos rojos",
-        price: 28.5,
-        stock: 16,
-        category_id: categoryMap["Productos Sin Gluten"],
-        store_id: stores[11].id,
-        image_url: "https://images.unsplash.com/photo-1533134486753-c833f0ed4866?w=800&q=80",
+        name: "Cuscús Real Marroquí",
+        description: "Cuscús con vegetales y carne de cordero",
+        price: 32.0,
+        stock: 22,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[30].id,
+        image_url: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&q=80",
+      },
+      {
+        name: "Pastela Marroquí",
+        description: "Pastel dulce-salado con carne y almendras",
+        price: 28.0,
+        stock: 20,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[30].id,
+        image_url: "https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80",
+      },
+
+      // Store 32: Halal Fusion Kitchen
+      {
+        name: "Pollo Teriyaki Halal",
+        description: "Pollo halal con salsa teriyaki y arroz jazmín",
+        price: 29.0,
+        stock: 25,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[31].id,
+        image_url: "https://images.unsplash.com/photo-1603073545584-82e2a65d9d28?w=800&q=80",
+      },
+      {
+        name: "Curry Thai Halal",
+        description: "Curry tailandés con carne halal y leche de coco",
+        price: 31.0,
+        stock: 22,
+        category_id: categoryMap["Pasteles"],
+        store_id: stores[31].id,
+        image_url: "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=800&q=80",
+      },
+      {
+        name: "Bowl Asiático Halal",
+        description: "Bowl con arroz, vegetales y carne halal al wok",
+        price: 27.0,
+        stock: 28,
+        category_id: categoryMap["Postres Especiales"],
+        store_id: stores[31].id,
+        image_url: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&q=80",
       },
     ];
 

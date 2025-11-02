@@ -31,7 +31,7 @@ class Store extends Model {
           type: DataTypes.TEXT 
         },
         type: {
-          type: DataTypes.ENUM("kosher", "diabetic", "gluten-free", "vegan", "halal"),
+          type: DataTypes.ENUM("kosher", "diabetic", "gluten-free", "vegan", "vegetarian", "halal"),
           allowNull: false,
           defaultValue: "kosher",
         },

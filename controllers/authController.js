@@ -73,7 +73,7 @@ async function login(req, res) {
     return sendResponse(res, 200, true, "Login exitoso", {
       user: {
         id: user.id,
-        nome: user.name,
+        name: user.name,
         lastname: user.lastname,
         email: user.email,
         role: user.role,

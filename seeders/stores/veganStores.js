@@ -58,6 +58,36 @@ const veganStores = [
     address: "Cordón, Durazno 1567, Montevideo",
     phone: "+598 2901 7788",
     email: "pedidos@veganstreet.com.uy"
+  },
+  {
+    id: 27,
+    name: "Vegan Sweets & Treats",
+    description: "Repostería vegana premium. Tortas, cupcakes y galletas sin ingredientes animales.",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400",
+    category: "vegan",
+    rating: 4.9,
+    deliveryTime: "30-40 min",
+    deliveryFee: 150,
+    featured: true,
+    tags: ["Repostería", "Dulces", "Artesanal"],
+    address: "Punta Gorda, Av. Bolivia 3456, Montevideo",
+    phone: "+598 2622 1133",
+    email: "info@vegansweets.com.uy"
+  },
+  {
+    id: 28,
+    name: "Pure Vegan Bistro",
+    description: "Bistro vegano elegante. Brunch, almuerzos y cenas con ingredientes de primera.",
+    image: "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=400",
+    category: "vegan",
+    rating: 4.8,
+    deliveryTime: "35-45 min",
+    deliveryFee: 180,
+    featured: false,
+    tags: ["Bistro", "Elegante", "Brunch"],
+    address: "Carrasco Norte, Bolivia 567, Montevideo",
+    phone: "+598 2604 8877",
+    email: "reservas@pureveganbistro.com.uy"
   }
 ];
 

@@ -58,6 +58,36 @@ const kosherStores = [
     address: "Carrasco, Av. Arocena 1678, Montevideo",
     phone: "+598 2600 7890",
     email: "reservas@koshersushi.com.uy"
+  },
+  {
+    id: 33,
+    name: "Tel Aviv Eats",
+    description: "Sabores de Tel Aviv en Montevideo. Sabich, shakshuka y burekas frescos.",
+    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400",
+    category: "kosher",
+    rating: 4.8,
+    deliveryTime: "25-35 min",
+    deliveryFee: 120,
+    featured: true,
+    tags: ["Israelí", "Street food", "Auténtico"],
+    address: "Punta Carretas, Solano Antuña 3456, Montevideo",
+    phone: "+598 2712 9900",
+    email: "info@telAviveats.com.uy"
+  },
+  {
+    id: 34,
+    name: "Kosher Pastry House",
+    description: "Repostería kosher fina. Pasteles para celebraciones y eventos especiales.",
+    image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400",
+    category: "kosher",
+    rating: 4.9,
+    deliveryTime: "35-45 min",
+    deliveryFee: 200,
+    featured: false,
+    tags: ["Repostería", "Celebraciones", "Premium"],
+    address: "Pocitos, Francisco Muñoz 2789, Montevideo",
+    phone: "+598 2708 6655",
+    email: "pedidos@kosherpastry.com.uy"
   }
 ];
 

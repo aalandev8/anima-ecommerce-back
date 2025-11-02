@@ -58,6 +58,36 @@ const halalStores = [
     address: "Cordón, Río Negro 1445, Montevideo",
     phone: "+598 2901 7722",
     email: "contacto@halalburger.com.uy"
+  },
+  {
+    id: 31,
+    name: "Marruecos Food",
+    description: "Auténtica cocina marroquí halal. Tagines, cuscús y pastelas tradicionales.",
+    image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400",
+    category: "halal",
+    rating: 4.8,
+    deliveryTime: "40-50 min",
+    deliveryFee: 170,
+    featured: true,
+    tags: ["Marroquí", "Especias", "Tradicional"],
+    address: "Parque Rodó, Sarmiento 2345, Montevideo",
+    phone: "+598 2710 3322",
+    email: "info@marrueccosfood.com.uy"
+  },
+  {
+    id: 32,
+    name: "Halal Fusion Kitchen",
+    description: "Fusión de cocina halal moderna. Mezcla de sabores mediterráneos y asiáticos.",
+    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+    category: "halal",
+    rating: 4.7,
+    deliveryTime: "30-40 min",
+    deliveryFee: 150,
+    featured: false,
+    tags: ["Fusión", "Moderno", "Creativo"],
+    address: "Buceo, Av. Italia 3890, Montevideo",
+    phone: "+598 2623 4455",
+    email: "pedidos@halalfusion.com.uy"
   }
 ];
 
