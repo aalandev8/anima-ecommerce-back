@@ -5,14 +5,16 @@ const sequelize = require("./database.js");
 
 const app = express();
 app.use(express.json());
-app.use(cors({ 
-  origin: ["http://localhost:3000", "http://localhost:5173"],
-  credentials: true 
-}));
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:5173"],
+    credentials: true,
+  }),
+);
 
-const routes = require("./routes"); 
+const routes = require("./routes");
 
-routes(app); 
+routes(app);
 
 app.get("/", (req, res) => {
   res.send(`
@@ -67,7 +69,6 @@ app.get("/", (req, res) => {
   `);
 });
 
-
 app.use("*", (req, res) => {
   res.status(404).json({
     success: false,
@@ -75,7 +76,6 @@ app.use("*", (req, res) => {
     availableRoutes: ["/", "/api/status"],
   });
 });
-
 
 app.use((error, req, res, next) => {
   console.error("❌ Error:", error);
@@ -87,12 +87,11 @@ app.use((error, req, res, next) => {
 
 const PORT = process.env.APP_PORT || process.env.PORT || 3000;
 
-
 sequelize
   .authenticate()
   .then(() => {
     console.log("Base de datos conectada");
-    return sequelize.sync({ alter: true });
+    return sequelize.sync();
   })
   .then(() => {
     app.listen(PORT, () => {
@@ -106,7 +105,5 @@ sequelize
       console.log(`Servidor SIN BD corriendo en puerto ${PORT}`);
     });
   });
-
-
 
 module.exports = app;
