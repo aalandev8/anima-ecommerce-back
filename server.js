@@ -4,18 +4,45 @@ const cors = require("cors");
 const sequelize = require("./database.js");
 
 const app = express();
+
+// 🧠 Middleware base
 app.use(express.json());
+
+// ✅ CORS dinámico (detecta frontend y dashboard automáticamente)
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:5175"],
+    origin: (origin, callback) => {
+      // Permitir peticiones sin "origin" (por ejemplo desde Postman o el mismo servidor)
+      if (!origin) return callback(null, true);
+
+      // Permitir cualquier localhost con cualquier puerto (frontend, dashboard, etc.)
+      if (/^http:\/\/localhost:\d+$/.test(origin) || /^http:\/\/127\.0\.0\.1:\d+$/.test(origin)) {
+        return callback(null, true);
+      }
+
+      // También permitir los dominios definidos explícitamente
+      const allowedOrigins = [
+        "http://localhost:3000", // React clásico
+        "http://localhost:5173", // Frontend Vite
+        "http://localhost:5174", // Dashboard Vite
+      ];
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      // Bloquear todo lo que no esté permitido
+      return callback(new Error("No permitido por CORS: " + origin));
+    },
     credentials: true,
-  }),
+  })
 );
 
+// 📦 Rutas principales
 const routes = require("./routes");
-
 routes(app);
 
+// 🌐 Página de bienvenida (no se toca)
 app.get("/", (req, res) => {
   res.send(`
     <!DOCTYPE html>
@@ -69,6 +96,7 @@ app.get("/", (req, res) => {
   `);
 });
 
+// ⚠️ Middleware de rutas no encontradas
 app.use("*", (req, res) => {
   res.status(404).json({
     success: false,
@@ -77,6 +105,7 @@ app.use("*", (req, res) => {
   });
 });
 
+// ⚠️ Middleware de errores
 app.use((error, req, res, next) => {
   console.error("❌ Error:", error);
   res.status(500).json({
@@ -85,8 +114,10 @@ app.use((error, req, res, next) => {
   });
 });
 
+// 🚀 Configuración del puerto
 const PORT = process.env.APP_PORT || process.env.PORT || 3000;
 
+// 🗄️ Conexión con base de datos y arranque del servidor
 sequelize
   .authenticate()
   .then(() => {
