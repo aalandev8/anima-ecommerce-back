@@ -1,95 +1,82 @@
 const { Product, Category } = require("../models");
+const { Op } = require("sequelize");
 
 const productController = {
+  // ✅ Obtener todos los productos (con filtrado y paginación)
   getAllProducts: async (req, res) => {
     try {
-      const products = await Product.findAll({
-        include: [
-          {
-            model: Category,
-            as: "category",
-            attributes: ["id", "name"],
-          },
-        ],
+      const { category = "all", page = 1, limit = 6 } = req.query;
+      const offset = (page - 1) * limit;
+
+      // Configuración base del include
+      const includeConfig = [
+        {
+          model: Category,
+          as: "category",
+          attributes: ["id", "name"],
+        },
+      ];
+
+      // Filtrar por categoría si no es "all"
+      if (category && category.toLowerCase() !== "all") {
+        includeConfig[0].where = {
+          name: { [Op.iLike]: `%${category}%` },
+        };
+      }
+
+      // Consulta con paginación
+      const { count, rows } = await Product.findAndCountAll({
+        include: includeConfig,
+        limit: parseInt(limit),
+        offset: parseInt(offset),
+        distinct: true,
+        order: [["id", "ASC"]],
       });
-      res.json(products);
+
+      // Formatear productos
+      const products = rows.map((p) => ({
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        stock: p.stock,
+        image: p.image || "/images/default-food.jpg",
+        category: p.category ? p.category.name : null,
+      }));
+
+      // Enviar respuesta estructurada
+      res.json({
+        products,
+        total: count,
+        totalPages: Math.ceil(count / limit),
+        currentPage: parseInt(page),
+      });
     } catch (error) {
+      console.error("Error al obtener productos:", error);
       res.status(500).json({ error: error.message });
     }
   },
 
+  // ✅ Obtener producto por ID
   getProductById: async (req, res) => {
     try {
       const product = await Product.findByPk(req.params.id, {
-        include: [
-          {
-            model: Category,
-            as: "category",
-          },
-        ],
+        include: [{ model: Category, as: "category" }],
       });
+
       if (!product) {
         return res.status(404).json({ message: "Producto no encontrado" });
       }
-      res.json(product);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  },
 
-  getProductsByCategory: async (req, res) => {
-    try {
-      const products = await Product.findAll({
-        where: { category_id: req.params.categoryId },
-        include: [
-          {
-            model: Category,
-            as: "category",
-            attributes: ["id", "name"],
-          },
-        ],
+      res.json({
+        ...product.toJSON(),
+        image: product.image || "/images/default-food.jpg",
       });
-      res.json(products);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
   },
 
-  getProductsByStore: async (req, res) => {
-    try {
-      const products = await Product.findAll({
-        where: { store_id: req.params.storeId },
-        include: [
-          {
-            model: Category,
-            as: "category",
-            attributes: ["id", "name"],
-          },
-        ],
-      });
-      res.json(products);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  },
-
-  getAllProducts: async (req, res) => {
-    try {
-      const products = await Product.findAll({
-        include: [
-          {
-            model: Category,
-            as: "category",
-            attributes: ["id", "name"],
-          },
-        ],
-      });
-      res.json(products);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  },
-
+  // ✅ Crear producto
   createProduct: async (req, res) => {
     try {
       const category = await Category.findByPk(req.body.category_id);
@@ -99,19 +86,19 @@ const productController = {
 
       const product = await Product.create(req.body);
       const productWithCategory = await Product.findByPk(product.id, {
-        include: [
-          {
-            model: Category,
-            as: "category",
-          },
-        ],
+        include: [{ model: Category, as: "category" }],
       });
-      res.status(201).json(productWithCategory);
+
+      res.status(201).json({
+        ...productWithCategory.toJSON(),
+        image: productWithCategory.image || "/images/default-food.jpg",
+      });
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
   },
 
+  // ✅ Actualizar producto
   updateProduct: async (req, res) => {
     try {
       if (req.body.category_id) {
@@ -127,14 +114,13 @@ const productController = {
 
       if (updated) {
         const product = await Product.findByPk(req.params.id, {
-          include: [
-            {
-              model: Category,
-              as: "category",
-            },
-          ],
+          include: [{ model: Category, as: "category" }],
         });
-        res.json(product);
+
+        res.json({
+          ...product.toJSON(),
+          image: product.image || "/images/default-food.jpg",
+        });
       } else {
         res.status(404).json({ message: "Producto no encontrado" });
       }
@@ -143,16 +129,15 @@ const productController = {
     }
   },
 
+  // ✅ Eliminar producto
   deleteProduct: async (req, res) => {
     try {
       const deleted = await Product.destroy({
         where: { id: req.params.id },
       });
-      if (deleted) {
-        res.status(204).send();
-      } else {
-        res.status(404).json({ message: "Producto no encontrado" });
-      }
+
+      if (deleted) return res.status(204).send();
+      res.status(404).json({ message: "Producto no encontrado" });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -160,3 +145,6 @@ const productController = {
 };
 
 module.exports = productController;
+
+
+

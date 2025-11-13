@@ -1,23 +1,35 @@
 const express = require("express");
 const router = express.Router();
 const productController = require("../controllers/productController");
-const { validateProduct, validateId, validateCategoryId } = require("../middlewares/validation");
+const { validateProduct, validateId } = require("../middlewares/validation");
 const { authenticateToken, requireAdmin } = require("../middlewares/auth");
 
+// ✅ Rutas limpias y compatibles con el frontend
 router.get("/", productController.getAllProducts);
-router.get("/category/:categoryId", validateCategoryId, productController.getProductsByCategory);
 router.get("/:id", validateId, productController.getProductById);
-router.get("/store/:storeId", productController.getProductsByStore);
 
-router.post("/", authenticateToken, requireAdmin, validateProduct, productController.createProduct);
+router.post(
+  "/",
+  authenticateToken,
+  requireAdmin,
+  validateProduct,
+  productController.createProduct
+);
+
 router.put(
   "/:id",
   authenticateToken,
   requireAdmin,
   validateId,
-
-  productController.updateProduct,
+  productController.updateProduct
 );
-router.delete("/:id", authenticateToken, requireAdmin, validateId, productController.deleteProduct);
+
+router.delete(
+  "/:id",
+  authenticateToken,
+  requireAdmin,
+  validateId,
+  productController.deleteProduct
+);
 
 module.exports = router;

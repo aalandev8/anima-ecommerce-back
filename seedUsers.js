@@ -6,10 +6,10 @@ const { User } = require("./models"); // ajusta según tu export en src/models/i
 
 const users = [
   { nombre: "Mica", apellido: "Apellido", email: "mica@example.com", role: "admin" },
-  { nombre: "Juan", apellido: "Apellido", email: "juan@example.com", role: "editor" },
-  { nombre: "Sofi", apellido: "Apellido", email: "sofi@example.com", role: "editor" },
-  { nombre: "Luis", apellido: "Apellido", email: "luis@example.com", role: "viewer" },
-  { nombre: "Ana", apellido: "Apellido", email: "ana@example.com", role: "viewer" },
+  { nombre: "Regi", apellido: "Apellido", email: "regi@example.com", role: "admin" },
+  { nombre: "Facu", apellido: "Apellido", email: "facu@example.com", role: "admin" },
+  { nombre: "Carlo", apellido: "Apellido", email: "carlo@example.com", role: "admin" },
+  { nombre: "Angie", apellido: "Apellido", email: "angie@example.com", role: "admin" },
 ];
 
 async function seed() {
