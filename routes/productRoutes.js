@@ -4,10 +4,16 @@ const productController = require("../controllers/productController");
 const { validateProduct, validateId } = require("../middlewares/validation");
 const { authenticateToken, requireAdmin } = require("../middlewares/auth");
 
-// ✅ Rutas limpias y compatibles con el frontend
+// ✅ Obtener todos los productos (con filtros y paginación)
 router.get("/", productController.getAllProducts);
+
+// ✅ Obtener productos por tienda
+router.get("/store/:storeId/products", productController.getProductsByStore);
+
+// ✅ Obtener producto por ID
 router.get("/:id", validateId, productController.getProductById);
 
+// ADMIN CRUD
 router.post(
   "/",
   authenticateToken,

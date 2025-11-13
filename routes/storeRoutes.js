@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     if (category) {
       whereClause.type = category;
     }
-    
+      
     const stores = await Store.findAll({
       where: whereClause,
       include: [

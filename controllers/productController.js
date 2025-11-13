@@ -2,13 +2,15 @@ const { Product, Category } = require("../models");
 const { Op } = require("sequelize");
 
 const productController = {
-  // ✅ Obtener todos los productos (con filtrado y paginación)
+
+  // -----------------------------------------
+  // 1) OBTENER TODOS LOS PRODUCTOS + FILTRO + PÁGINAS
+  // -----------------------------------------
   getAllProducts: async (req, res) => {
     try {
       const { category = "all", page = 1, limit = 6 } = req.query;
       const offset = (page - 1) * limit;
 
-      // Configuración base del include
       const includeConfig = [
         {
           model: Category,
@@ -17,14 +19,12 @@ const productController = {
         },
       ];
 
-      // Filtrar por categoría si no es "all"
       if (category && category.toLowerCase() !== "all") {
         includeConfig[0].where = {
           name: { [Op.iLike]: `%${category}%` },
         };
       }
 
-      // Consulta con paginación
       const { count, rows } = await Product.findAndCountAll({
         include: includeConfig,
         limit: parseInt(limit),
@@ -33,7 +33,6 @@ const productController = {
         order: [["id", "ASC"]],
       });
 
-      // Formatear productos
       const products = rows.map((p) => ({
         id: p.id,
         name: p.name,
@@ -43,7 +42,6 @@ const productController = {
         category: p.category ? p.category.name : null,
       }));
 
-      // Enviar respuesta estructurada
       res.json({
         products,
         total: count,
@@ -56,7 +54,38 @@ const productController = {
     }
   },
 
-  // ✅ Obtener producto por ID
+
+  // -----------------------------------------
+  // 2) OBTENER PRODUCTOS POR TIENDA (LA FUNCIÓN QUE FALTABA)
+  // -----------------------------------------
+  getProductsByStore: async (req, res) => {
+    try {
+      const { storeId } = req.params;
+
+      const products = await Product.findAll({
+        where: { store_id: storeId },
+        include: [
+          {
+            model: Category,
+            as: "category",
+            attributes: ["id", "name"],
+          },
+        ],
+        order: [["id", "ASC"]],
+      });
+
+      res.json({
+        data: products,
+      });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+
+  // -----------------------------------------
+  // 3) OBTENER PRODUCTO POR ID
+  // -----------------------------------------
   getProductById: async (req, res) => {
     try {
       const product = await Product.findByPk(req.params.id, {
@@ -76,7 +105,10 @@ const productController = {
     }
   },
 
-  // ✅ Crear producto
+
+  // -----------------------------------------
+  // 4) CREAR PRODUCTO
+  // -----------------------------------------
   createProduct: async (req, res) => {
     try {
       const category = await Category.findByPk(req.body.category_id);
@@ -98,7 +130,10 @@ const productController = {
     }
   },
 
-  // ✅ Actualizar producto
+
+  // -----------------------------------------
+  // 5) ACTUALIZAR PRODUCTO
+  // -----------------------------------------
   updateProduct: async (req, res) => {
     try {
       if (req.body.category_id) {
@@ -129,7 +164,10 @@ const productController = {
     }
   },
 
-  // ✅ Eliminar producto
+
+  // -----------------------------------------
+  // 6) ELIMINAR PRODUCTO
+  // -----------------------------------------
   deleteProduct: async (req, res) => {
     try {
       const deleted = await Product.destroy({
