@@ -459,7 +459,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Batido de Proteína con Berries",
     description: "Smoothie de proteína vegetal con frutos del bosque",
-    price: 18.0,
+    price: 180,
     stock: 35,
     category_id: categoryMap["Bebidas"],
     store_id: stores[7].id,
@@ -468,7 +468,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Ensalada de Garbanzos",
     description: "Garbanzos con vegetales frescos, limón y aceite de oliva",
-    price: 19.0,
+    price: 190,
     stock: 32,
     category_id: categoryMap["Ensaladas"],
     store_id: stores[7].id,
@@ -477,7 +477,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Pan Integral de Semillas",
     description: "Pan casero integral con semillas de girasol, lino y chía",
-    price: 15.0,
+    price: 150,
     stock: 20,
     category_id: categoryMap["Panes"],
     store_id: stores[7].id,
@@ -486,7 +486,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Galletas de Avena y Pasas",
     description: "Galletas crujientes de avena integral con pasas",
-    price: 13.0,
+    price: 130,
     stock: 40,
     category_id: categoryMap["Dulces"],
     store_id: stores[7].id,
@@ -495,7 +495,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Wrap de Hummus y Vegetales",
     description: "Tortilla integral con hummus casero y vegetales crujientes",
-    price: 18.5,
+    price: 185,
     stock: 26,
     category_id: categoryMap["Wraps"],
     store_id: stores[7].id,
@@ -504,7 +504,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Barras Energéticas de Frutos Secos",
     description: "Barras caseras de almendras, nueces y semillas",
-    price: 12.0,
+    price: 120,
     stock: 45,
     category_id: categoryMap["Dulces"],
     store_id: stores[7].id,
@@ -513,7 +513,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Arroz Integral con Vegetales",
     description: "Arroz integral salteado con mix de vegetales frescos",
-    price: 20.0,
+    price: 200,
     stock: 24,
     category_id: categoryMap["Platos principales"],
     store_id: stores[7].id,
@@ -522,7 +522,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Muffins de Arándanos Integrales",
     description: "Muffins esponjosos de harina integral con arándanos frescos",
-    price: 14.0,
+    price: 140,
     stock: 30,
     category_id: categoryMap["Dulces"],
     store_id: stores[7].id,
@@ -531,7 +531,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Sopa de Verduras con Legumbres",
     description: "Sopa nutritiva con mix de verduras frescas y legumbres",
-    price: 16.5,
+    price: 165,
     stock: 28,
     category_id: categoryMap["Sopas"],
     store_id: stores[7].id,
@@ -540,7 +540,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Bowl de Yogurt con Granola",
     description: "Yogurt natural con granola casera y frutas de temporada",
-    price: 15.5,
+    price: 155,
     stock: 35,
     category_id: categoryMap["Brunch"],
     store_id: stores[7].id,
@@ -551,7 +551,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Brownie de Chocolate",
     description: "Brownie húmedo de chocolate amargo intenso",
-    price: 15.0,
+    price: 150,
     stock: 30,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -560,7 +560,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Galletas de Avena",
     description: "Galletas crujientes de avena con textura perfecta",
-    price: 12.5,
+    price: 129,
     stock: 35,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -569,7 +569,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Cheesecake de Vainilla",
     description: "Cheesecake cremoso de vainilla sobre base de galleta",
-    price: 24.0,
+    price: 240,
     stock: 20,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -578,7 +578,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Muffins de Chocolate",
     description: "Muffins esponjosos con chips de chocolate",
-    price: 13.5,
+    price: 135,
     stock: 28,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -587,7 +587,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Tarta de Fresas",
     description: "Tarta fresca con crema y fresas naturales",
-    price: 26.0,
+    price: 260,
     stock: 18,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -596,7 +596,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Cookies de Chips de Chocolate",
     description: "Galletas suaves con chips de chocolate amargo",
-    price: 14.0,
+    price: 140,
     stock: 32,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -605,7 +605,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Cheesecake de Frutos Rojos",
     description: "Cheesecake con topping de arándanos y fresas",
-    price: 25.0,
+    price: 250,
     stock: 22,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -614,7 +614,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Alfajores de Maicena",
     description: "Alfajores suaves rellenos de dulce de leche especial",
-    price: 16.0,
+    price: 160,
     stock: 25,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -623,7 +623,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Tarta de Limón Merengada",
     description: "Tarta cremosa de limón con merengue italiano",
-    price: 23.0,
+    price: 230,
     stock: 20,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -632,7 +632,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Bombones de Chocolate",
     description: "Bombones artesanales de chocolate premium",
-    price: 19.0,
+    price: 190,
     stock: 30,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -641,7 +641,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Cupcakes de Vainilla",
     description: "Cupcakes decorados con frosting de vainilla",
-    price: 14.5,
+    price: 145,
     stock: 28,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -650,7 +650,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Tarta de Manzana Casera",
     description: "Tarta tradicional de manzanas con canela",
-    price: 22.0,
+    price: 220,
     stock: 16,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -659,7 +659,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Macarons Surtidos",
     description: "Delicados macarons franceses en variedad de sabores",
-    price: 18.0,
+    price: 180,
     stock: 24,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -668,7 +668,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Panettone Clásico",
     description: "Panettone esponjoso con frutas confitadas",
-    price: 28.0,
+    price: 280,
     stock: 15,
     category_id: categoryMap["Dulces"],
     store_id: stores[24].id,
@@ -677,7 +677,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Tiramisú Tradicional",
     description: "Tiramisú italiano con café y cacao",
-    price: 21.0,
+    price: 210,
     stock: 20,
     category_id: categoryMap["Postres"],
     store_id: stores[24].id,
@@ -689,7 +689,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Pechuga de Pavo al Horno",
     description: "Pechuga de pavo jugosa con hierbas aromáticas y vegetales",
-    price: 29.0,
+    price: 290,
     stock: 22,
     category_id: categoryMap["Platos principales"],
     store_id: stores[25].id,
@@ -698,7 +698,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Lasaña de Vegetales",
     description: "Lasaña con capas de vegetales y salsa de tomate casera",
-    price: 26.0,
+    price: 260,
     stock: 20,
     category_id: categoryMap["Platos principales"],
     store_id: stores[25].id,
@@ -707,7 +707,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Salmón a la Naranja",
     description: "Filete de salmón con glaseado de naranja y vegetales",
-    price: 34.0,
+    price: 340,
     stock: 16,
     category_id: categoryMap["Platos principales"],
     store_id: stores[25].id,
@@ -716,7 +716,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Bowl Mediterráneo Completo",
     description: "Bowl con pollo, quinoa, hummus, vegetales y tahini",
-    price: 27.0,
+    price: 270,
     stock: 24,
     category_id: categoryMap["Bowls"],
     store_id: stores[25].id,
@@ -725,7 +725,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Pollo al Limón con Alcaparras",
     description: "Pechuga de pollo en salsa de limón y alcaparras",
-    price: 28.0,
+    price: 280,
     stock: 20,
     category_id: categoryMap["Platos principales"],
     store_id: stores[25].id,
@@ -734,7 +734,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Albóndigas de Pavo en Salsa",
     description: "Albóndigas de pavo en salsa de tomate natural con especias",
-    price: 25.0,
+    price: 250,
     stock: 22,
     category_id: categoryMap["Platos principales"],
     store_id: stores[25].id,
@@ -743,7 +743,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Ensalada César con Salmón",
     description: "Ensalada César con salmón grillado y aderezo ligero",
-    price: 26.0,
+    price: 260,
     stock: 20,
     category_id: categoryMap["Ensaladas"],
     store_id: stores[25].id,
@@ -752,7 +752,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Lomo de Cerdo Magro",
     description: "Lomo de cerdo asado con vegetales de temporada",
-    price: 31.0,
+    price: 310,
     stock: 16,
     category_id: categoryMap["Platos principales"],
     store_id: stores[25].id,
@@ -761,7 +761,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Cazuela de Mariscos",
     description: "Cazuela con variedad de mariscos frescos en caldo ligero",
-    price: 36.0,
+    price: 360,
     stock: 14,
     category_id: categoryMap["Platos principales"],
     store_id: stores[25].id,
@@ -770,7 +770,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Ensalada de Atún y Aguacate",
     description: "Ensalada fresca con atún, aguacate y vegetales mixtos",
-    price: 23.0,
+    price: 230,
     stock: 24,
     category_id: categoryMap["Ensaladas"],
     store_id: stores[25].id,
@@ -779,7 +779,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Gazpacho Andaluz",
     description: "Sopa fría de tomate, pepino y pimientos frescos",
-    price: 14.0,
+    price: 140,
     stock: 30,
     category_id: categoryMap["Sopas"],
     store_id: stores[25].id,
@@ -788,7 +788,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Pechugas Rellenas de Espinaca",
     description: "Pechuga de pollo rellena con espinaca y queso bajo en grasa",
-    price: 30.0,
+    price: 200,
     stock: 18,
     category_id: categoryMap["Platos principales"],
     store_id: stores[25].id,
@@ -797,7 +797,7 @@ module.exports = (stores, categoryMap) => [
   {
     name: "Natillas de Vainilla",
     description: "Natillas cremosas de vainilla natural",
-    price: 13.0,
+    price: 350,
     stock: 28,
     category_id: categoryMap["Postres"],
     store_id: stores[25].id,
