@@ -5,7 +5,7 @@ const {
   glutenFreeStores,
   veganStores,
   vegetarianStores,
-  halalStores
+  halalStores,
 } = require("./stores/index");
 
 module.exports = async () => {
@@ -32,16 +32,19 @@ module.exports = async () => {
       ...glutenFreeStores,
       ...veganStores,
       ...vegetarianStores,
-      ...halalStores
-    ].map(store => ({
+      ...halalStores,
+    ].map((store) => ({
       name: store.name,
       description: store.description,
+      deliveryTime: store.deliveryTime,
+      deliveryFee: store.deliveryFee,
+      rating: store.rating,
       address: store.address,
       phone: store.phone,
       email: store.email,
-      image_url: store.image,
+      image_url: store.image_url || store.image,
       type: store.category,
-      admin_id: adminId
+      admin_id: adminId,
     }));
 
     // Insertar las nuevas tiendas
@@ -53,17 +56,16 @@ module.exports = async () => {
     const categoryCounts = {
       kosher: kosherStores.length,
       diabetic: diabeticStores.length,
-      "gluten-free": glutenFreeStores.length,
+      glutenFree: glutenFreeStores.length,
       vegan: veganStores.length,
       vegetarian: vegetarianStores.length,
-      halal: halalStores.length
+      halal: halalStores.length,
     };
 
     console.log("📊 Resumen por categoría:");
     Object.entries(categoryCounts).forEach(([category, count]) => {
       console.log(`  - ${category}: ${count} tiendas`);
     });
-
   } catch (error) {
     console.error("❌ Error en Stores seeder:", error);
     throw error;

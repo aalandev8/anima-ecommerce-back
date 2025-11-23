@@ -3,7 +3,7 @@ const { Store } = require('../models'); // Asegúrate de que Sequelize se haya c
 // Crear una nueva tienda
 exports.createStore = async (req, res) => {
   try {
-    const { name, description, address, phone, email, image_url, type, admin_id } = req.body;
+    const { name, description, deliveryTime, deliveryFee, rating, address, phone, email, image_url, type, admin_id } = req.body;
 
     // Validación básica de parámetros
     if (!name || !address || !admin_id) {
@@ -14,6 +14,9 @@ exports.createStore = async (req, res) => {
     const store = await Store.create({ 
       name,
       description,
+      deliveryTime,
+      deliveryFee,
+      rating,
       address,
       phone,
       email,
@@ -64,7 +67,7 @@ exports.getStoreById = async (req, res) => {
 // Actualizar una tienda por ID
 exports.updateStore = async (req, res) => {
   const { id } = req.params;
-  const { name, description, address, phone, email, image_url, type, admin_id } = req.body;
+  const { name, description, deliveryTime, deliveryFee, rating, address, phone, email, image_url, type, admin_id } = req.body;
 
   try {
     const store = await Store.findByPk(id);
@@ -75,6 +78,9 @@ exports.updateStore = async (req, res) => {
     // Actualizar tienda
     store.name = name || store.name;
     store.description = description || store.description;
+    store.deliveryTime = deliveryTime || store.deliveryTime;
+    store.deliveryFee = deliveryFee || store.deliveryFee;
+    store.rating = rating || store.rating;
     store.address = address || store.address;
     store.phone = phone || store.phone;
     store.email = email || store.email;

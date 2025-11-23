@@ -7,29 +7,33 @@ const diabeticProducts = require("./product/productDiabetic");
 const vegetarianProducts = require("./product/productVegetarian");
 const halalProducts = require("./product/productHalal");
 
-
-module.exports = async () => {
+module.exports = async (skipDelete = false) => {
   console.log("Iniciando seeder de Products...");
 
   try {
-    await Product.destroy({ where: {} });
-    console.log("🗑️  Existing products cleared");
+    // Solo borrar si no se pasa skipDelete como true
+    if (!skipDelete) {
+      await Product.destroy({ where: {} });
+      console.log("🗑️  Existing products cleared");
+    }
 
-    
+    // Obtener categorías
     const categories = await Category.findAll();
     const categoryMap = {};
     categories.forEach((cat) => {
       categoryMap[cat.name] = cat.id;
     });
 
-    
+    // Obtener tiendas
     const stores = await Store.findAll({ order: [["id", "ASC"]] });
 
-    if (stores.length < 34) {
-      throw new Error("No hay suficientes tiendas. Ejecuta el storeSeeder primero.");
+    console.log(`📊 Tiendas encontradas: ${stores.length}`);
+
+    if (stores.length < 24) {
+      throw new Error(`No hay suficientes tiendas. Se encontraron ${stores.length}, se necesitan al menos 24.`);
     }
 
-  
+    // Crear array de productos
     const products = [
       ...kosherProducts(stores, categoryMap),
       ...veganProducts(stores, categoryMap),
@@ -37,13 +41,13 @@ module.exports = async () => {
       ...diabeticProducts(stores, categoryMap),
       ...vegetarianProducts(stores, categoryMap),
       ...halalProducts(stores, categoryMap),
-     
     ];
 
-   
+    // Insertar productos
     await Product.bulkCreate(products);
     console.log(`✅ ${products.length} productos insertados correctamente`);
   } catch (error) {
-    console.error("❌ Error en el seeder de productos:", error);
+    console.error("❌ Error en el seeder de productos:", error.message);
+    throw error;
   }
 };

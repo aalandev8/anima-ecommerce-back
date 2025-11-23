@@ -4,34 +4,45 @@ class Store extends Model {
   static initModel(sequelize) {
     Store.init(
       {
-        id: { 
-          type: DataTypes.INTEGER.UNSIGNED, 
-          autoIncrement: true, 
-          primaryKey: true 
+        id: {
+          type: DataTypes.INTEGER.UNSIGNED,
+          autoIncrement: true,
+          primaryKey: true,
         },
-        name: { 
-          type: DataTypes.STRING(150), 
-          allowNull: false 
+        name: {
+          type: DataTypes.STRING(150),
+          allowNull: false,
         },
-        description: { 
-          type: DataTypes.TEXT 
+        description: {
+          type: DataTypes.TEXT,
         },
-        address: { 
-          type: DataTypes.STRING(255), 
-          allowNull: false 
+        deliveryTime: {
+          type: DataTypes.STRING(10),
         },
-        phone: { 
-          type: DataTypes.STRING(20) 
+        deliveryFee: {
+          type: DataTypes.DECIMAL(10, 2),
+          defaultValue: 0.0,
         },
-        email: { 
-          type: DataTypes.STRING(150), 
-          validate: { isEmail: true } 
+        rating: {
+          type: DataTypes.DECIMAL(2, 1),
+          defaultValue: 0.0,
         },
-        image_url: { 
-          type: DataTypes.TEXT 
+        address: {
+          type: DataTypes.STRING(255),
+          allowNull: false,
+        },
+        phone: {
+          type: DataTypes.STRING(20),
+        },
+        email: {
+          type: DataTypes.STRING(150),
+          validate: { isEmail: true },
+        },
+        image_url: {
+          type: DataTypes.TEXT,
         },
         type: {
-          type: DataTypes.ENUM("kosher", "diabetic", "gluten-free", "vegan", "vegetarian", "halal"),
+          type: DataTypes.ENUM("kosher", "diabetic", "glutenFree", "vegan", "vegetarian", "halal"),
           allowNull: false,
           defaultValue: "kosher",
         },

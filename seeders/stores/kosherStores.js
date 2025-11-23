@@ -1,39 +1,10 @@
 const kosherStores = [
   {
     id: 1,
-    name: "Kosher Delight",
-    description: "Auténtica comida kosher certificada por el rabinato. Especialidades en carne y parrilla.",
-    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400",
-    category: "kosher",
-    rating: 4.8,
-    deliveryTime: "35-45 min",
-    deliveryFee: 0,
-    featured: true,
-    tags: ["Carne", "Parrilla", "Certificado"],
-    address: "Pocitos, Av. Rivera 3845, Montevideo",
-    phone: "+598 2712 4567",
-    email: "info@kosherdelight.com.uy"
-  },
-  {
-    id: 2,
-    name: "Jerusalem Flavors",
-    description: "Comida israelí tradicional. Falafel, shawarma y hummus frescos todos los días.",
-    image: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400",
-    category: "kosher",
-    rating: 4.6,
-    deliveryTime: "25-35 min",
-    deliveryFee: 150,
-    featured: false,
-    tags: ["Israelí", "Mediterráneo", "Vegetariano"],
-    address: "Punta Carretas, Ellauri 567, Montevideo",
-    phone: "+598 2710 8901",
-    email: "pedidos@jerusalemflavors.com.uy"
-  },
-  {
-    id: 3,
-    name: "Shabbat Kitchen",
+    name: "Tienda 613 Kosher",
     description: "Especialidades para Shabbat y festividades. Jalá fresca horneada diariamente.",
-    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400",
+    image:
+      "https://static.wixstatic.com/media/ec6a2c_2fe966b099084e638dceaee5e2a10d92~mv2.jpg/v1/fit/w_2500,h_1330,al_c/ec6a2c_2fe966b099084e638dceaee5e2a10d92~mv2.jpg",
     category: "kosher",
     rating: 4.9,
     deliveryTime: "40-50 min",
@@ -42,13 +13,14 @@ const kosherStores = [
     tags: ["Panadería", "Tradicional", "Shabbat"],
     address: "Villa Muñoz, Av. 8 de Octubre 2234, Montevideo",
     phone: "+598 2481 3456",
-    email: "contacto@shabbatkitchen.com.uy"
+    email: "contacto@shabbatkitchen.com.uy",
   },
   {
-    id: 4,
-    name: "Kosher Sushi Bar",
-    description: "Sushi kosher premium con pescado fresco certificado. Rolls creativos y tradicionales.",
-    image: "https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=400",
+    id: 2,
+    name: "DellyK",
+    description:
+      "Sushi kosher premium con pescado fresco certificado. Rolls creativos y tradicionales.",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzBxed2qxXoWKqL7ZSPbOtV6Ml-3xDg56daQ&s",
     category: "kosher",
     rating: 4.7,
     deliveryTime: "30-40 min",
@@ -57,13 +29,14 @@ const kosherStores = [
     tags: ["Sushi", "Japonés", "Premium"],
     address: "Carrasco, Av. Arocena 1678, Montevideo",
     phone: "+598 2600 7890",
-    email: "reservas@koshersushi.com.uy"
+    email: "reservas@koshersushi.com.uy",
   },
   {
-    id: 33,
-    name: "Tel Aviv Eats",
+    id: 3,
+    name: "Kos Kafe - Chabad",
     description: "Sabores de Tel Aviv en Montevideo. Sabich, shakshuka y burekas frescos.",
-    image: "https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400",
+    image:
+      "data:image/png;base64,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",
     category: "kosher",
     rating: 4.8,
     deliveryTime: "25-35 min",
@@ -72,13 +45,14 @@ const kosherStores = [
     tags: ["Israelí", "Street food", "Auténtico"],
     address: "Punta Carretas, Solano Antuña 3456, Montevideo",
     phone: "+598 2712 9900",
-    email: "info@telAviveats.com.uy"
+    email: "info@telAviveats.com.uy",
   },
   {
-    id: 34,
-    name: "Kosher Pastry House",
+    id: 4,
+    name: "Kosher Bakery",
     description: "Repostería kosher fina. Pasteles para celebraciones y eventos especiales.",
-    image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ-I630-UOYebHase6ziQkUzVsDydUGegr4Q&s",
     category: "kosher",
     rating: 4.9,
     deliveryTime: "35-45 min",
@@ -87,8 +61,8 @@ const kosherStores = [
     tags: ["Repostería", "Celebraciones", "Premium"],
     address: "Pocitos, Francisco Muñoz 2789, Montevideo",
     phone: "+598 2708 6655",
-    email: "pedidos@kosherpastry.com.uy"
-  }
+    email: "pedidos@kosherpastry.com.uy",
+  },
 ];
 
 module.exports = kosherStores;

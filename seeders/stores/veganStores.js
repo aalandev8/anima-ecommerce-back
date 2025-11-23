@@ -1,9 +1,10 @@
 const veganStores = [
   {
     id: 13,
-    name: "Green Revolution",
-    description: "Comida vegana innovadora y deliciosa. Burgers, tacos y bowls 100% plant-based.",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400",
+    name: "Metapata",
+    description: "Carne vegana en el país más carnívoro.",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVBzXNVP36JlSMjY9KE-yCAwvgQ1oj0Tiia1qhe9tXSERtpScTqFjcXkrhsrihvhZx8EU&usqp=CAU",
     category: "vegan",
     rating: 4.9,
     deliveryTime: "30-40 min",
@@ -12,13 +13,14 @@ const veganStores = [
     tags: ["Plant-based", "Burgers", "Innovador"],
     address: "Av. 18 de Julio 1234, Montevideo",
     phone: "+598 2901 5678",
-    email: "info@greenrevolution.com.uy"
+    email: "info@greenrevolution.com.uy",
   },
   {
     id: 14,
-    name: "Vegan Bowl Co.",
+    name: "Buena Vida",
     description: "Bowls nutritivos con proteína vegetal, granos y vegetales frescos de temporada.",
-    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400",
+    image:
+      "https://scontent.fmvd3-1.fna.fbcdn.net/v/t39.30808-6/244061820_3206069442940998_528489326031546353_n.png?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=NoD6owTmIRQQ7kNvwGTNkbj&_nc_oc=AdlIcyjAACdzwNMed_Xuz6V5GOpRMAOw-bOPU6Ux0E2H1JVGE0vDItgVvZ_WbM1QvbYanf_sCOg_w19lTUrBGxKb&_nc_zt=23&_nc_ht=scontent.fmvd3-1.fna&_nc_gid=JbIH-kM6uKuER4OssCB60Q&oh=00_AfizVgXTtDes094ocKCYqtbH16Hcekalw0oKLInfMQAmNg&oe=6926C459",
     category: "vegan",
     rating: 4.7,
     deliveryTime: "25-35 min",
@@ -27,13 +29,14 @@ const veganStores = [
     tags: ["Bowls", "Saludable", "Fresco"],
     address: "Bulevar Artigas 2456, Montevideo",
     phone: "+598 2902 3456",
-    email: "hola@veganbowl.com.uy"
+    email: "hola@veganbowl.com.uy",
   },
   {
     id: 15,
-    name: "Plant Power Kitchen",
+    name: "Alma Good Food",
     description: "Alta cocina vegana. Menú degustación y platos gourmet sin ingredientes animales.",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8FrZb404CJH3xp79mswdAnT15UWqkubijew&s",
     category: "vegan",
     rating: 4.8,
     deliveryTime: "40-50 min",
@@ -42,13 +45,14 @@ const veganStores = [
     tags: ["Gourmet", "Sofisticado", "Premium"],
     address: "Pocitos, Av. Brasil 3210, Montevideo",
     phone: "+598 2710 8899",
-    email: "reservas@plantpower.com.uy"
+    email: "reservas@plantpower.com.uy",
   },
   {
     id: 16,
-    name: "Vegan Street Food",
+    name: "La Molienda",
     description: "Comida callejera vegana con estilo. Hot dogs, nachos y tacos que sorprenden.",
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy4AusWWi1B5LkUjcDvVIerqMZdspMGfoX0A&s",
     category: "vegan",
     rating: 4.6,
     deliveryTime: "20-30 min",
@@ -57,38 +61,8 @@ const veganStores = [
     tags: ["Street food", "Casual", "Rápido"],
     address: "Cordón, Durazno 1567, Montevideo",
     phone: "+598 2901 7788",
-    email: "pedidos@veganstreet.com.uy"
+    email: "pedidos@veganstreet.com.uy",
   },
-  {
-    id: 27,
-    name: "Vegan Sweets & Treats",
-    description: "Repostería vegana premium. Tortas, cupcakes y galletas sin ingredientes animales.",
-    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400",
-    category: "vegan",
-    rating: 4.9,
-    deliveryTime: "30-40 min",
-    deliveryFee: 150,
-    featured: true,
-    tags: ["Repostería", "Dulces", "Artesanal"],
-    address: "Punta Gorda, Av. Bolivia 3456, Montevideo",
-    phone: "+598 2622 1133",
-    email: "info@vegansweets.com.uy"
-  },
-  {
-    id: 28,
-    name: "Pure Vegan Bistro",
-    description: "Bistro vegano elegante. Brunch, almuerzos y cenas con ingredientes de primera.",
-    image: "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=400",
-    category: "vegan",
-    rating: 4.8,
-    deliveryTime: "35-45 min",
-    deliveryFee: 180,
-    featured: false,
-    tags: ["Bistro", "Elegante", "Brunch"],
-    address: "Carrasco Norte, Bolivia 567, Montevideo",
-    phone: "+598 2604 8877",
-    email: "reservas@pureveganbistro.com.uy"
-  }
 ];
 
 module.exports = veganStores;

@@ -1,10 +1,10 @@
 const glutenFreeStores = [
   {
     id: 9,
-    name: "Gluten Free Bakery",
+    name: "ChocAra - Sabores Que Unen",
     description: "Panadería 100% libre de gluten. Pan, pasteles y galletas que saben increíbles.",
-    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400",
-    category: "gluten-free",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9ypM00DC1ILNE_i7CBd_osFHuufSiuTMaOQ&s",
+    category: "glutenFree",
     rating: 4.9,
     deliveryTime: "30-40 min",
     deliveryFee: 0,
@@ -16,10 +16,10 @@ const glutenFreeStores = [
   },
   {
     id: 10,
-    name: "Celiac Heaven",
+    name: "La Commedia Trattoría",
     description: "Cocina dedicada sin contaminación cruzada. Certificado por asociación de celíacos.",
-    image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400",
-    category: "gluten-free",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5FvxdPMo4_eGU9z3HmOSggrFYOZdnjdUwig&s",
+    category: "glutenFree",
     rating: 4.8,
     deliveryTime: "35-45 min",
     deliveryFee: 120,
@@ -31,10 +31,10 @@ const glutenFreeStores = [
   },
   {
     id: 11,
-    name: "GF Pizza House",
+    name: "Café Ramona",
     description: "Las mejores pizzas gluten free de la ciudad. Masa crujiente y deliciosa.",
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400",
-    category: "gluten-free",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIlj6zSSiUFglDbC-pbTlUI8RiHEzrvkLwug&s",
+    category: "glutenFree",
     rating: 4.7,
     deliveryTime: "25-35 min",
     deliveryFee: 0,
@@ -46,10 +46,10 @@ const glutenFreeStores = [
   },
   {
     id: 12,
-    name: "Pasta Without Limits",
+    name: "La Panadería de Ramona",
     description: "Pasta fresca sin gluten hecha en casa. Salsas artesanales y recetas italianas.",
-    image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400",
-    category: "gluten-free",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3VGC4dA2Q3aSYcrb6NJCTnqvmh746LZ9ZsA&s",
+    category: "glutenFree",
     rating: 4.6,
     deliveryTime: "40-50 min",
     deliveryFee: 180,
@@ -59,36 +59,7 @@ const glutenFreeStores = [
     phone: "+598 2601 4433",
     email: "reservas@pastawithoutlimits.com.uy"
   },
-  {
-    id: 29,
-    name: "GF Sweet Bakery",
-    description: "Pastelería sin gluten artesanal. Brownies, cookies y tortas certificadas sin TACC.",
-    image: "https://images.unsplash.com/photo-1587241321921-91a834d82b01?w=400",
-    category: "gluten-free",
-    rating: 4.9,
-    deliveryTime: "25-35 min",
-    deliveryFee: 0,
-    featured: true,
-    tags: ["Pastelería", "Sin TACC", "Dulces"],
-    address: "Pocitos, 26 de Marzo 1234, Montevideo",
-    phone: "+598 2709 2233",
-    email: "info@gfsweetbakery.com.uy"
-  },
-  {
-    id: 30,
-    name: "Celiac Friendly Café",
-    description: "Café y brunch 100% libre de gluten. Desayunos, sándwiches y smoothies.",
-    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400",
-    category: "gluten-free",
-    rating: 4.7,
-    deliveryTime: "20-30 min",
-    deliveryFee: 100,
-    featured: false,
-    tags: ["Café", "Brunch", "Desayunos"],
-    address: "Malvín, Propios 2890, Montevideo",
-    phone: "+598 2618 7766",
-    email: "contacto@celiacfriendly.com.uy"
-  }
+  
 ];
 
 module.exports = glutenFreeStores;

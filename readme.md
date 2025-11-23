@@ -90,7 +90,7 @@ The API includes the following models:
 - Tartas (Tarts)
 - Macarons
 - Postres Especiales (Special Desserts)
-- Productos Sin Gluten (Gluten-Free Products)
+- Productos Sin Gluten (GlutenFree Products)
 
 ---
 
@@ -121,7 +121,7 @@ The API includes the following models:
 **Store Types (Dietary Categories):**
 - `kosher` - Kosher certified products
 - `diabetic` - Sugar-free and diabetic-friendly
-- `gluten-free` - Gluten-free products
+- `glutenFree` - GlutenFree products
 - `vegan` - Plant-based products
 - `halal` - Halal certified products
 
@@ -337,7 +337,7 @@ npm run seeders
 ```
 
 **What gets seeded:**
-- ✅ **20 Stores** - Specialty stores (4 per dietary category: kosher, diabetic, gluten-free, vegan, halal)
+- ✅ **20 Stores** - Specialty stores (4 per dietary category: kosher, diabetic, glutenFree, vegan, halal)
 - ✅ **100 Users** - 3 admin users + 97 regular clients with realistic Spanish names
 - ✅ **8 Categories** - Pastry shop categories
 - ✅ **22+ Products** - Delicious pastry items with prices
